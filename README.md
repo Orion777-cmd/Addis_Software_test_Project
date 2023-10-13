@@ -1,4 +1,4 @@
-# Addis_Software_test_ProjectAddis Software Test Project
+# Addis Software Test Project
 This is my submission for the Addis Software Test Project, where I have developed a Full Stack Application to manage a list of songs. The application integrates a frontend and a backend (API) using the following technologies:
 
 Technologies Used
