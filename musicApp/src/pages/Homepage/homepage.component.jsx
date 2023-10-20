@@ -5,7 +5,7 @@ import MusicForm from "../../components/MusicForm/MusicForm.component";
 export const Homepage = () => {
     return (
         <div>
-            <MusicForm />
+            <Playlist/>
         </div>
     )
 }

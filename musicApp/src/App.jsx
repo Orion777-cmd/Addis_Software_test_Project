@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 
 import Homepage from './pages/Homepage/homepage.component';
 import { createMusic } from './firebase/firebase.utils';
+import {Header} from './components/Header/header.component';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-
+      <Header />
       <Homepage />
       
     </div>
