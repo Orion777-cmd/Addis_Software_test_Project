@@ -12,7 +12,7 @@ const CardContainer = styled.div`
     padding: 1em;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     img {
         width: 90%;
