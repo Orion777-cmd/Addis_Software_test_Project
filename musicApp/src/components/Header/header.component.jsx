@@ -3,6 +3,60 @@ import styled from "@emotion/styled";
 import {Button } from "rebass"
 import CustomInput from "../CustomInput/customInput.component";
 
+const HamburgerContainer = styled.button`
+    margin-right: 2em;
+
+    background-color: transparent;
+    border: none;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: black;
+    border: none;
+
+    &:focus, &:hover, &:active{
+        outline: none;
+        .menu-icon{
+            background-color: transparent;
+        }
+        .menu-icon::before{
+            transform: translateX(-20px) rotate(45deg);
+        }
+        .menu-icon::after{
+            transform: translateX(-20px) rotate(-45deg);
+        }
+    }
+
+    .menu-icon,
+    .menu-icon::before,
+    .menu-icon::after{
+        background-color:#fff;
+        width: 40px;
+        height: 5px;
+        border-radius: 5px;
+        position: absolute;
+        transition: all 0.5s;
+    }
+    .menu-icon::before,
+    .menu-icon::after{
+        content: "";
+    
+    }
+    
+
+    .menu-icon::before{
+        transform:  translate(-20px, -12px);
+    }
+    .menu-icon::after{
+        transform: translate(-20px, 12px);
+    }
+
+
+`
+
 const Headercontainer = styled.div`
     height: 20vh;
     width: 100%;
@@ -11,7 +65,10 @@ const Headercontainer = styled.div`
     align-items: center;
     padding-left: 1em;
     // padding-right: 1em;
+   
     
+    
+    }
 
 `;
 const SearchContainer = styled.div`
@@ -56,7 +113,11 @@ export const Header = () => {
             <SigninSignupContainer>
                 <Button>Log in</Button>
                 <Button>Sign up</Button>
+                <HamburgerContainer className="menu-button">
+                    <div className="menu-icon"></div>
+            </HamburgerContainer>
             </SigninSignupContainer>
+            
         </Headercontainer>
     )
 }
