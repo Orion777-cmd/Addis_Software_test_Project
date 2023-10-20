@@ -7,7 +7,7 @@ const PlaylistContainer = styled.div`
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1em;
     padding: 1em;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     overflow-y: scroll;
     background-color: #f2f2f2;

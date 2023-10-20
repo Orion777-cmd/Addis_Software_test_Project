@@ -9,6 +9,9 @@ const Headercontainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 1em;
+    // padding-right: 1em;
+    
 
 `;
 const SearchContainer = styled.div`
@@ -20,7 +23,7 @@ const SearchContainer = styled.div`
 `
 const SigninSignupContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 20%;
     button {
