@@ -1,6 +1,12 @@
 import React from "react";
 import imageUrl from "../../assets/thinkingOutLoud.png";
 import playIcon from "../../assets/play-pause.png"
+import {TbPlayerTrackNextFilled,TbPlayerTrackPrevFilled} from "react-icons/tb"
+import {PiPlayFill, PiPauseFill} from "react-icons/pi"
+import {FiHeart} from "react-icons/fi"
+import {FaHeart} from "react-icons/fa"
+import {BsRepeat, BsThreeDots} from "react-icons/bs"
+import {BiShuffle} from "react-icons/bi"
 import styled from "@emotion/styled";
 
 const CardContainer = styled.div`
@@ -47,7 +53,21 @@ const InfoContainer = styled.div`
         padding: 0;
     }
 `
+const MusicButtons = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+    padding: 20px;
 
+`
+const Footer = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+    padding: 20px;
+`
 
 export const Card = () => {
     return (
@@ -60,8 +80,18 @@ export const Card = () => {
                     <h3>Ed Sheeran</h3>
                 </InfoContainer>
                 
+				<MusicButtons>
+                    <TbPlayerTrackPrevFilled size={30}/>
+                    <PiPlayFill size={30}/>
+                    <TbPlayerTrackNextFilled size={30}/>
+                </MusicButtons>
 				
-				
+                <Footer>
+                    <FiHeart size={30}/>
+                    <BsRepeat size={30}/>
+                    <BiShuffle size={30}/>
+                    <BsThreeDots size={30}/>
+                </Footer>
             </BodyPlayer>
                
         </CardContainer>
