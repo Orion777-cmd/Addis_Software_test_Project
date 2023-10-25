@@ -1,19 +1,21 @@
 import React from "react"
 import Card from "../card/card.component"
+import Sidebar from "../sidebar/sidebar.component";
 import styled from "@emotion/styled";
 
 const PlaylistContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1em;
-    padding: 1em;
-    width: 100vw;
-    height: 100%;
-    overflow-y: scroll;
-    background-color: #f2f2f2;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    margin: 1em;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    width: 100%;
+    height: 80vh;
+    background: #fbd3e9; /* fallback for old browsers */
+
+    background: #fff;
+
+    border-radius: 10px;
+    box-shadow: 2px 8px 8px lightgray;
+    overflow: hidden;
 
 `;
 
@@ -22,6 +24,7 @@ export const Playlist = () => {
     return (
         <PlaylistContainer>
             <Card />
+            <Sidebar />
         </PlaylistContainer>
     )
 }
