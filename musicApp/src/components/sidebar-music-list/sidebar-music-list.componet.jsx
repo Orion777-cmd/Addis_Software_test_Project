@@ -8,11 +8,14 @@ const SidebarMusicListContainer = styled.div`
     margin: 10px;
     cursor: pointer;
     display: flex;
-    color: gray;
+    color: black;
     align-items: center;
     padding-bottom: 10px;
     &:hover {
         color:  #2e2b2b;
+    }
+    &:hover {
+        scale: 1.02;
     }
 
     img{

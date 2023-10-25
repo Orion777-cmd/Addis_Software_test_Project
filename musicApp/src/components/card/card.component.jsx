@@ -10,7 +10,8 @@ import {BiShuffle} from "react-icons/bi"
 import styled from "@emotion/styled";
 
 const CardContainer = styled.div`
-    background-color: #fff;
+    background-color: rgb(37, 150, 190);
+    
     padding: 0;
     height: 600px;
     width: 366px;
@@ -39,7 +40,7 @@ const BodyPlayer = styled.div`
     padding: 0;
     height: 286px;
     width: 366px;
-    background: #fff;
+    background-color: #abdbe3;
 
        
 `

@@ -9,9 +9,7 @@ const PlaylistContainer = styled.div`
     justify-content: space-between;
     width: 100%;
     height: auto;
-    background: #fbd3e9; /* fallback for old browsers */
-
-    background: #fff;
+    background: transparent;
 
     border-radius: 10px;
     // box-shadow: 2px 8px 8px lightgray;

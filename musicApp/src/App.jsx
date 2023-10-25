@@ -4,7 +4,7 @@ import styled from "@emotion/styled"
 const AppContainer = styled.div`
   width: 80%;
   margin: 0 auto;
-  
+  background-color: transparent;
 `
 
 // import './App.css'

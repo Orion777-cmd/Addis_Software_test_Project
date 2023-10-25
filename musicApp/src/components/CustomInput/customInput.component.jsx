@@ -19,7 +19,8 @@ const CustomInput = () => {
         fontSize: '1em',
         fontWeight: '500',
         fontFamily: 'inherit',
-        backgroundColor: '#1a1a1a',
+        backgroundColor: '#fff',
+        color: 'black',
         cursor: 'pointer',
         transition: 'border-color 0.25s',
         '&:hover': {

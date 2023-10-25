@@ -86,14 +86,15 @@ const SigninSignupContainer = styled.div`
     width: 20%;
     button {
         border-radius: 8px;
-        border: 1px solid transparent;
+        border: 1px solid #646cff;
         padding: 0.6em 1.2em;
         font-size: 1em;
         font-weight: 500;
         font-family: inherit;
-        background-color: #1a1a1a;
+        background-color: #fff;
         cursor: pointer;
         transition: border-color 0.25s;
+        color: black;
       }
       button:hover {
         border-color: #646cff;
