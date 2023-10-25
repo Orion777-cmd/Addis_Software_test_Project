@@ -5,16 +5,16 @@ import styled from "@emotion/styled";
 
 const PlaylistContainer = styled.div`
     display: flex;
-    margin: auto;
+    margin: 10px auto;
     justify-content: space-between;
     width: 100%;
-    height: 80vh;
+    height: auto;
     background: #fbd3e9; /* fallback for old browsers */
 
     background: #fff;
 
     border-radius: 10px;
-    box-shadow: 2px 8px 8px lightgray;
+    // box-shadow: 2px 8px 8px lightgray;
     overflow: hidden;
 
 `;

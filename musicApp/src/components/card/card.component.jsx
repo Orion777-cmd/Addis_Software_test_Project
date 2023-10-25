@@ -12,9 +12,10 @@ import styled from "@emotion/styled";
 const CardContainer = styled.div`
     background-color: #fff;
     padding: 0;
-    height: 650px;
+    height: 600px;
     width: 366px;
     margin-inline: auto;
+    margin-bottom : 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
     overflow: hidden;
@@ -27,7 +28,7 @@ const Imagecontainer = styled.div`
     background-image: url(${imageUrl});
     background-size: cover;
     width: 366px;
-    height: 366px;
+    height: 350px;
     padding: 0;
     margin: 0;
     

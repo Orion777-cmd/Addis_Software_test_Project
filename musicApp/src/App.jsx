@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react'
+import styled from "@emotion/styled"
 
-import './App.css'
+const AppContainer = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  
+`
+
+// import './App.css'
 
 import Homepage from './pages/Homepage/homepage.component';
 import { createMusic } from './firebase/firebase.utils';
 import {Header} from './components/Header/header.component';
 
 function App() {
-  const [count, setCount] = useState(0)
+  
   const musicData = {
     title: 'My Song',
     artist: 'My Artist',
@@ -25,11 +32,11 @@ function App() {
   },[])
 
   return (
-    <div className="App">
+    <AppContainer>
       <Header />
       <Homepage />
       
-    </div>
+    </AppContainer>
   )
 }
 

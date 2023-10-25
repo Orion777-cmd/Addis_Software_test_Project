@@ -8,8 +8,6 @@ const MusicForm = ({ onSubmit }) => {
     artist: '',
     genre: '',
     duration: '',
-    releaseDate: '',
-    album: '',
     coverArtUrl: '',
     audioFileUrl: ''
   });
@@ -30,8 +28,6 @@ const MusicForm = ({ onSubmit }) => {
       artist: '',
       genre: '',
       duration: '',
-      releaseDate: '',
-      album: '',
       coverArtUrl: '',
       audioFileUrl: ''
     });
@@ -56,14 +52,6 @@ const MusicForm = ({ onSubmit }) => {
         <Input type="text" name="duration" value={formData.duration} onChange={handleChange} />
       </Box>
       <Box mb={3}>
-        <label>Release Date:</label>
-        <Input type="text" name="releaseDate" value={formData.releaseDate} onChange={handleChange} />
-      </Box>
-      <Box mb={3}>
-        <label>Album:</label>
-        <Input type="text" name="album" value={formData.album} onChange={handleChange} />
-      </Box>
-      <Box mb={3}>
         <label>Cover Art URL:</label>
         <Input type="text" name="coverArtUrl" value={formData.coverArtUrl} onChange={handleChange} />
       </Box>
@@ -71,7 +59,7 @@ const MusicForm = ({ onSubmit }) => {
         <label>Audio File URL:</label>
         <Input type="text" name="audioFileUrl" value={formData.audioFileUrl} onChange={handleChange} />
       </Box>
-      <Button type="submit">Submit</Button>
+      <Button type="submit" >Submit</Button>
     </Box>
   );
 };

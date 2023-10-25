@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import {Button } from "rebass"
 import CustomInput from "../CustomInput/customInput.component";
+import {RiNeteaseCloudMusicFill} from "react-icons/ri"
 
 const HamburgerContainer = styled.button`
     margin-right: 2em;
@@ -106,16 +107,16 @@ const SigninSignupContainer = styled.div`
 export const Header = () => {
     return (
         <Headercontainer>
-            <h1>Music App</h1>
+            <RiNeteaseCloudMusicFill size="80px" color="#000" />
             <searchcontainer>
                 <CustomInput placeholder="Search" />
             </searchcontainer>
             <SigninSignupContainer>
                 <Button>Log in</Button>
                 <Button>Sign up</Button>
-                <HamburgerContainer className="menu-button">
+                {/* <HamburgerContainer className="menu-button">
                     <div className="menu-icon"></div>
-            </HamburgerContainer>
+                </HamburgerContainer> */}
             </SigninSignupContainer>
             
         </Headercontainer>
