@@ -1,6 +1,6 @@
 import React from "react";
 import imageUrl from "../../assets/thinkingOutLoud.png";
-import playIcon from "../../assets/play-pause.png"
+
 import {TbPlayerTrackNextFilled,TbPlayerTrackPrevFilled} from "react-icons/tb"
 import {PiPlayFill, PiPauseFill} from "react-icons/pi"
 import {FiHeart} from "react-icons/fi"
@@ -21,7 +21,6 @@ const CardContainer = styled.div`
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
     overflow: hidden;
    
-
 `
 
 const Imagecontainer = styled.div`

@@ -12,6 +12,7 @@ const AppContainer = styled.div`
 import Homepage from './pages/Homepage/homepage.component';
 import { createMusic } from './firebase/firebase.utils';
 import {Header} from './components/Header/header.component';
+import Footer from './components/footer/footer.component';
 
 function App() {
   
@@ -35,7 +36,7 @@ function App() {
     <AppContainer>
       <Header />
       <Homepage />
-      
+      <Footer />
     </AppContainer>
   )
 }
