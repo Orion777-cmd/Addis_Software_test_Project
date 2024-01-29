@@ -3,6 +3,11 @@ import styled from "@emotion/styled";
 import {Button } from "rebass"
 import CustomInput from "../CustomInput/customInput.component";
 import {RiNeteaseCloudMusicFill} from "react-icons/ri"
+import { MdOutlineMail } from "react-icons/md";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { CgProfile } from "react-icons/cg";
+import { CiLight } from "react-icons/ci";
+import { MdDarkMode } from "react-icons/md";
 
 const HamburgerContainer = styled.button`
     margin-right: 2em;
@@ -66,59 +71,73 @@ const Headercontainer = styled.div`
     align-items: center;
     padding-left: 1em;
     // padding-right: 1em;
-   
-    
-    
+     
     }
 
 `;
-const SearchContainer = styled.div`
-    width: 30%;
-    &input{
-        width: 100%;    
-    }
-
-`
-const SigninSignupContainer = styled.div`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 20%;
-    button {
-        border-radius: 8px;
-        border: 1px solid #646cff;
-        padding: 0.6em 1.2em;
-        font-size: 1em;
-        font-weight: 500;
-        font-family: inherit;
-        background-color: #fff;
-        cursor: pointer;
-        transition: border-color 0.25s;
-        color: black;
-      }
-      button:hover {
+const SearchContainer = styled.input`
+    width: 50%;
+    height: 20%;
+    border-radius: 20px;
+    border: 1px solid #646cff;
+    padding: 1.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #fff;
+    color: black;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    &:hover {
         border-color: #646cff;
-      }
-      button:focus,
-      button:focus-visible {
+    }
+    &:focus {
         outline: 4px auto -webkit-focus-ring-color;
-      }
+    }
+    &::placeholder {
+        font-size: 1.2em;
+
+    }
+`;
+
+const RightContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 15%;
+
+    button {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        color: #000;
+    }
+    
 `
+
+const LeftContainer = styled.div`
+    display: flex;
+    gap: 10%;
+    align-items: center;
+    width: 60%;
+    font-size: 0.6rem;
+`;
 
 export const Header = () => {
     return (
         <Headercontainer>
-            <RiNeteaseCloudMusicFill size="80px" color="#000" />
-            <searchcontainer>
-                <CustomInput placeholder="Search" />
-            </searchcontainer>
-            <SigninSignupContainer>
-                <Button>Log in</Button>
-                <Button>Sign up</Button>
-                {/* <HamburgerContainer className="menu-button">
-                    <div className="menu-icon"></div>
-                </HamburgerContainer> */}
-            </SigninSignupContainer>
+            <LeftContainer>
+                <RiNeteaseCloudMusicFill size="80px" color="#000" />
+                <SearchContainer type="text" placeholder="&#128269; search for songs, artists..."/>
+            </LeftContainer>
+            
+            <RightContainer>
+                <button><MdOutlineMail size="30px" color="#000" /></button>
+                <button><IoIosNotificationsOutline size="30px" color="#000" /></button>
+                <button><MdDarkMode size={30}/></button>
+                <button><CgProfile size="30px" color="#000" /></button>
+            </RightContainer>
             
         </Headercontainer>
     )

@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from 'rebass';
 import styled from '@emotion/styled';
 import { space, color, layout, typography, flexbox, border } from 'styled-system';
+import { CiSearch } from "react-icons/ci";
 
 
 const CustomInput = () => {
@@ -9,7 +10,7 @@ const CustomInput = () => {
     <Box
       as="input"
       type="text"
-      placeholder="Search"
+      placeholder="input text"
       sx={{
         width: '100%',
         height: '100%',

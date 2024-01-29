@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import styled from "@emotion/styled"
 
 const AppContainer = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   background-color: transparent;
 `

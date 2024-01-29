@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 const FooterContainer = styled.div`
-    position: fixed;
-    left: 0;
-    top: 90%;
+  
     width: 100%;
     background-color: #333;
     opacity: 0.8;
@@ -20,3 +18,6 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
+
