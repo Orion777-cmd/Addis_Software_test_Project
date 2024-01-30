@@ -1,15 +1,20 @@
 import {createSlice} from "@reduxjs/toolkit"
 
 const initialState = {
-    hidden: true
+    hidden: -1
 }
 
 const profileSlice = createSlice({
     name: "music",
     initialState,
     reducers: {
-        toggleMusic: (state) => {
-            state.hidden = !state.hidden
+        toggleMusic: (state, action) => {
+            console.log("reducer: ", action.payload)
+            if (state.hidden == action.payload.idx){
+                state.hidden = -1
+            }else {
+                state.hidden = action.payload.idx;
+            }
         }
     }
 

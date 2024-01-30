@@ -7,6 +7,7 @@ import {useSelector, useDispatch} from "react-redux";
 import MusicPopup from "../musicPopup/musicPopup.component"
 
 import { selectMusicHidden } from "../../redux/music/music.selector"
+import { toggleMusic } from "../../redux/music/music.reducer";
 
 
 const ListCardContainer = styled.div`
@@ -46,6 +47,9 @@ const ListCardContainer = styled.div`
                 font-size: 0.6em;
             }
         }
+        .left-buttons{
+            margin-left: 20px;
+        }
     }
 
     button{
@@ -63,11 +67,17 @@ const ListCardContainer = styled.div`
 `;
 
 
-const ListCard = ({handleMusicPopupToggle}) => {
+const ListCard = ({idx}) => {
     const {mode} = useSelector(state=> state.theme)
+    console.log("listcard index: ", idx)
 
     const musicHidden = useSelector(selectMusicHidden)
-    
+    const dispatch = useDispatch()
+    const handleMusicPopupToggle = () => {
+        dispatch(toggleMusic({
+            idx : idx
+        }))
+    }
 
     console.log("musicPopUp hidden: ", musicHidden)
     return (
@@ -80,11 +90,11 @@ const ListCard = ({handleMusicPopupToggle}) => {
                 </div>
             </div>
             
-            <div>
+            <div className="left-buttons">
                 <button><IoPlayCircleOutline size={40} color={mode == "dark"? "#fff":"000"}/></button>
                 <button onClick={handleMusicPopupToggle}><HiOutlineDotsHorizontal size={40} color={mode == "dark"? "#fff":"000"}/></button>
             </div>
-            {musicHidden? null: <MusicPopup />}
+            {musicHidden === idx && <MusicPopup />}
         </ListCardContainer>
     )
 }

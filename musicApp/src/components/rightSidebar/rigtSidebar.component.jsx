@@ -116,7 +116,8 @@ const CardContainer = styled.div`
 
 const AllSongContainer = styled.div`
     width: 100%;
-    
+    height: 30%;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -126,16 +127,30 @@ const AllSongContainer = styled.div`
         margin: 0;
         padding: 0;
     }
+    ::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 8px;
+
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f5f5f5;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #000;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #333;
+      }
 
 `;
 
 
 const RightSidebar = () => {
     const {mode} = useSelector(state => state.theme)
-    const dispatch = useDispatch()
-    const handleMusicPopupToggle = () => {
-        dispatch(toggleMusic())
-    }
+    
     
     return (
         <RightSideBarContainer>
@@ -159,8 +174,7 @@ const RightSidebar = () => {
                 <Tag Genre="Hip Hop"/>
                 <Tag Genre="R&B"/>
                 <Tag Genre="Country"/>
-                <Tag Genre="Reggae"/>
-                
+                <Tag Genre="Reggae"/>                
                             
             </FilterContainer>
             <FilterSongContainer>
@@ -175,9 +189,8 @@ const RightSidebar = () => {
 
             <AllSongContainer>
                 <h3>Available Songs (<span>3</span>)</h3>
-                <ListCard handleMusicPopupToggle={handleMusicPopupToggle}/>
-                <ListCard handleMusicPopupToggle={handleMusicPopupToggle}/>
-                <ListCard handleMusicPopupToggle={handleMusicPopupToggle}/>
+                { [...Array(5)].map((_, i) => <ListCard idx={i}/>)}
+                
             </AllSongContainer>
         </RightSideBarContainer>
     )
