@@ -12,6 +12,8 @@ import {BiShuffle} from "react-icons/bi"
 import { BsArrowsAngleExpand } from "react-icons/bs";
 import { BsArrowsAngleContract } from "react-icons/bs";
 
+import {useSelector} from "react-redux";
+
 const MiddleContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -77,6 +79,7 @@ const ControlButtonsContainer = styled.div`
 
 
 const Middle = () => {
+    const {mode} = useSelector(state => state.theme)
     return (
         <MiddleContainer>
            
@@ -97,12 +100,12 @@ const Middle = () => {
             </PlayerContainer>
             
             <ControlButtonsContainer>
-                <button><BsArrowsAngleContract size={35}/></button>
-                <button><TbPlayerTrackPrevFilled size={35}/></button>                    
-                <button><PiPlayFill size={35}/></button>
-                <button><TbPlayerTrackNextFilled size={35}/></button>
-                <button><BsRepeat size={35}/></button>
-                <button><BiShuffle size={35}/></button>
+                <button><BsArrowsAngleContract size={35} color={mode == "dark"? "#fff":"000"}/></button>
+                <button><TbPlayerTrackPrevFilled size={35} color={mode == "dark"? "#fff":"000"}/></button>                    
+                <button><PiPlayFill size={35} color={mode == "dark"? "#fff":"000"}/></button>
+                <button><TbPlayerTrackNextFilled size={35} color={mode == "dark"? "#fff":"000"}/></button>
+                <button><BsRepeat size={35} color={mode == "dark"? "#fff":"000"}/></button>
+                <button><BiShuffle size={35} color={mode == "dark"? "#fff":"000"}/></button>
             </ControlButtonsContainer>
         </MiddleContainer>
     )

@@ -11,7 +11,7 @@ import BassGuitarUrl from "../../assets/bassGuitar.jpg";
 import ConcertUrl from "../../assets/concert.jpg";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
-
+import {useSelector} from "react-redux"
 
 const RightSideBarContainer = styled.div`
     display: flex;
@@ -45,7 +45,7 @@ const TitleContainer = styled.div`
     }
     a {
         text-decoration: none;
-        color: #333;
+        color: ${({ mode }) => (mode === "dark" ? "#fff" : "#333")};
         font-size: 12px;
         transition: all 0.2s ease-in-out;
         &:hover {
@@ -72,6 +72,7 @@ const FilterSongContainer = styled.div`
     gap: 0.1em;
     justify-content: center; 
     position: relative;
+
 `;
 
 const SliderButton = styled.button`
@@ -93,10 +94,12 @@ const SliderButton = styled.button`
 
 const LeftButton = styled(SliderButton)`
     left: 0px;
+    top : 10px;
 `;
 
 const RightButton = styled(SliderButton)`
-    right: 0px;
+    right: 5px;
+    top : 10px;
 `;
 
 const CardContainer = styled.div`
@@ -125,9 +128,10 @@ const AllSongContainer = styled.div`
 
 
 const RightSidebar = () => {
+    const {mode} = useSelector(state => state.theme)
     return (
         <RightSideBarContainer>
-            <TitleContainer>
+            <TitleContainer mode={mode}>
                 <div>
                     <h2>Music</h2>
                     <h2>Categories</h2>
@@ -152,13 +156,13 @@ const RightSidebar = () => {
                             
             </FilterContainer>
             <FilterSongContainer>
-                <LeftButton><FaArrowLeft /></LeftButton>
+                <LeftButton><FaArrowLeft color={mode == "dark"? "#fff":"000"}/></LeftButton>
                 <CardContainer>
                     <Card imageUrl={RoseUrl} />
                     <Card imageUrl={BluesUrl} />
                     <Card imageUrl={BassGuitarUrl} />
                 </CardContainer>
-                <RightButton><FaArrowRight /></RightButton>
+                <RightButton><FaArrowRight color={mode == "dark"? "#fff":"000"}/></RightButton>
             </FilterSongContainer>
 
             <AllSongContainer>

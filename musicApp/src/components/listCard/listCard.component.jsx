@@ -3,6 +3,7 @@ import styled from "@emotion/styled"
 import { IoPlayCircleOutline } from "react-icons/io5";
 import { FaRegCirclePause } from "react-icons/fa6";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import {useSelector} from "react-redux";
 
 
 const ListCardContainer = styled.div`
@@ -33,11 +34,12 @@ const ListCardContainer = styled.div`
             h3{
                 margin: 0;
                 padding: 0;
+                font-size: 0.8em;
             }
             p{
                 margin: 0;
                 padding: 0;
-                font-size: 12px;
+                font-size: 0.6em;
             }
         }
     }
@@ -58,6 +60,7 @@ const ListCardContainer = styled.div`
 
 
 const ListCard = () => {
+    const {mode} = useSelector(state=> state.theme)
     return (
         <ListCardContainer>
             <div>
@@ -69,8 +72,8 @@ const ListCard = () => {
             </div>
             
             <div>
-                <button><IoPlayCircleOutline size={40}/></button>
-                <button><HiOutlineDotsHorizontal size={40}/></button>
+                <button><IoPlayCircleOutline size={40} color={mode == "dark"? "#fff":"000"}/></button>
+                <button><HiOutlineDotsHorizontal size={40} color={mode == "dark"? "#fff":"000"}/></button>
             </div>
         </ListCardContainer>
     )

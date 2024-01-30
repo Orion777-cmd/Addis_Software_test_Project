@@ -1,11 +1,12 @@
 import react from "react"
 import styled from "@emotion/styled"
+import {useSelector} from "react-redux"
 
 const TagContainer = styled.div`
     wdith: 50px;
     height: 20px;
-    background-color: #000;
-    color: #fff;
+    background-color: ${({ mode }) => (mode === "dark" ? "#fff" : "#000")};
+    color: ${({ mode }) => (mode === "dark" ? "#000" : "#fff")};
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -19,14 +20,16 @@ const TagContainer = styled.div`
         font-size: 10px;
     }
     :hover {
-        background: #fff;
-        color: #000;
+        color: ${({ mode }) => (mode === "dark" ? "#fff" : "#000")};
+        background-color: ${({ mode }) => (mode === "dark" ? "#000" : "#fff")};
     }
+    
 `;
 
 const Tag = ({Genre}) => {
+    const {mode} = useSelector(state => state.theme)
     return (
-        <TagContainer>
+        <TagContainer mode={mode}>
             <p>{Genre}</p>
         </TagContainer>
     )

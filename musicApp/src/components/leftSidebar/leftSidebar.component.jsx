@@ -8,13 +8,15 @@ import { FaCompactDisc } from "react-icons/fa";
 import { HiAdjustments } from "react-icons/hi";
 import { IoIosAddCircle } from "react-icons/io";
 
+import {useSelector} from "react-redux"
+
 const LeftSidebarContainer = styled.div`
     width: 5%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: start;
+    align-items: flex-end;
+    justify-content: flex-start;
     gap: 2em;
     button {
         background-color: transparent;
@@ -24,8 +26,7 @@ const LeftSidebarContainer = styled.div`
         color: #2e2b2b;
         transition: all 0.2s ease-in-out;
         &:hover {
-            color: #e1e1e1;
-            scale: 1.02;
+            scale: 1.1;
         }
     
     }
@@ -33,15 +34,16 @@ const LeftSidebarContainer = styled.div`
 `;
 
 const LeftSidebar = () => {
+    const {mode} = useSelector(state => state.theme)
     return (
         <LeftSidebarContainer>
-            <button><IoMdHome size={30}/></button>
-            <button><MdFavoriteBorder size={30}/></button>
+            <button><IoMdHome size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button><MdFavoriteBorder size={30} color={mode == "dark"? "#fff":"000"}/></button>
             {/* <button><MdFavorite size={30}/></button> */}
-            <button><RiMusicFill size={30}/></button>
-            <button><FaCompactDisc size={30}/></button>
-            <button><HiAdjustments size={30}/></button>
-            <button><IoIosAddCircle size={30}/></button>
+            <button><RiMusicFill size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button><FaCompactDisc size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button><HiAdjustments size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button><IoIosAddCircle size={30} color={mode == "dark"? "#fff":"000"}/></button>
         </LeftSidebarContainer>
     )
 }

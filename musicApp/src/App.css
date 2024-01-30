@@ -1,20 +1,11 @@
-.app{
-  width: 80%;
-  height: auto;
-  margin: 0 auto;
-  /* display: flex;
-  flex-direction: column; */
-  /* background-color: #fff; */
-  padding: 0 2rem;
-}
 
 .dark-theme {
-  background: #000;
+  background: #040D12;
   color : #fff;
 }
 
 .light-theme {
-  background: #ffffffd0;
+  background: #fffff0;
   color: #000;
 
 }

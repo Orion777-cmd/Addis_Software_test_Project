@@ -1,5 +1,6 @@
 import react from "react"
 import styled from "@emotion/styled"
+import {useSelector} from "react-redux"
 
 const ProgressBarContainer = styled.div`
     width: 80%;
@@ -14,7 +15,7 @@ const ProgressBarContainer = styled.div`
 
     .progress {
         width: 5px;
-        background-color: #000;
+        background-color: ${({ mode }) => (mode === "dark" ? "#fff" : "#000")};
         border-radius: 5px;
         transition: height 0.2s ease-in-out; /* Add smooth height transition */
     }
@@ -33,8 +34,9 @@ const ProgressBarContainer = styled.div`
 
 
 const ProgressBar = () => {
+    const {mode} = useSelector(state => state.theme)
     return (
-        <ProgressBarContainer>
+        <ProgressBarContainer mode={mode}>
             {[...Array(25)].map((e, i) => <div className="progress" key={i}></div>)}
         </ProgressBarContainer>
     )

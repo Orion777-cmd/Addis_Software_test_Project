@@ -13,60 +13,6 @@ import { toggleTheme } from "../../redux/theme/theme.reducer";
 import {useDispatch, useSelector} from "react-redux"
 
 
-const HamburgerContainer = styled.button`
-    margin-right: 2em;
-
-    background-color: transparent;
-    border: none;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    color: black;
-    border: none;
-
-    &:focus, &:hover, &:active{
-        outline: none;
-        .menu-icon{
-            background-color: transparent;
-        }
-        .menu-icon::before{
-            transform: translateX(-20px) rotate(45deg);
-        }
-        .menu-icon::after{
-            transform: translateX(-20px) rotate(-45deg);
-        }
-    }
-
-    .menu-icon,
-    .menu-icon::before,
-    .menu-icon::after{
-        background-color:#fff;
-        width: 40px;
-        height: 5px;
-        border-radius: 5px;
-        position: absolute;
-        transition: all 0.5s;
-    }
-    .menu-icon::before,
-    .menu-icon::after{
-        content: "";
-    
-    }
-    
-
-    .menu-icon::before{
-        transform:  translate(-20px, -12px);
-    }
-    .menu-icon::after{
-        transform: translate(-20px, 12px);
-    }
-
-
-`
-
 const Headercontainer = styled.div`
     height: 10vh;
     width: 100%;
@@ -76,6 +22,7 @@ const Headercontainer = styled.div`
     padding-left: 1em;
     // padding-right: 1em;
      
+    color: ${({ theme }) => (theme === "dark" ? "#fff" : "#000")};
     }
 
 `;
@@ -88,8 +35,8 @@ const SearchContainer = styled.input`
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #fff;
-    color: black;
+    background:transparent;
+    color: ${({ mode }) => (mode === "dark" ? "#fff" : "#000")};
     cursor: pointer;
     transition: border-color 0.25s;
     &:hover {
@@ -99,7 +46,7 @@ const SearchContainer = styled.input`
         outline: 4px auto -webkit-focus-ring-color;
     }
     &::placeholder {
-        font-size: 1.2em;
+        font-size: 0.9em;
 
     }
 `;
@@ -139,15 +86,15 @@ export const Header = () => {
     return (
         <Headercontainer>
             <LeftContainer>
-                <RiNeteaseCloudMusicFill size="80px" color="#000" />
-                <SearchContainer type="text" placeholder="&#128269; search for songs, artists..."/>
+                <RiNeteaseCloudMusicFill size="80px" color={mode == "dark"? "#fff":"000"} />
+                <SearchContainer mode={mode} type="text" placeholder="&#128269; search for songs, artists..."/>
             </LeftContainer>
             
             <RightContainer>
-                <button><MdOutlineMail size="30px" color="#000" /></button>
-                <button><IoIosNotificationsOutline size="30px" color="#000" /></button>
-                <button onClick={handleThemeToggle}>{mode == "light"? <MdDarkMode size={30}/>: <CiLight size={30}/>}</button>
-                <button><CgProfile size="30px" color="#000" /></button>
+                <button><MdOutlineMail size="30px" color={mode == "dark"? "#fff":"000"} /></button>
+                <button><IoIosNotificationsOutline size="30px" color={mode == "dark"? "#fff":"000"} /></button>
+                <button onClick={handleThemeToggle}>{mode == "light"? <MdDarkMode size={30}/>: <CiLight color={mode == "dark"? "#fff":"000"} size={30}/>}</button>
+                <button><CgProfile size="30px" color={mode == "dark"? "#fff":"000"} /></button>
             </RightContainer>
             
         </Headercontainer>
