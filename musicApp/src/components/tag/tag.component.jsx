@@ -12,10 +12,15 @@ const TagContainer = styled.div`
     justify-content: center;
     // margin: 5px;
     padding: 0px 10px;
+    cursor: pointer;
     p {
         margin:0;
         padding: 0;
         font-size: 10px;
+    }
+    :hover {
+        background: #fff;
+        color: #000;
     }
 `;
 

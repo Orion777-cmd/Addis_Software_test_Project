@@ -2,6 +2,8 @@ import react from "react"
 import styled from "@emotion/styled"
 import { IoPlayCircleOutline } from "react-icons/io5";
 import { FaRegCirclePause } from "react-icons/fa6";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+
 
 const ListCardContainer = styled.div`
     width: 100%;
@@ -66,7 +68,10 @@ const ListCard = () => {
                 </div>
             </div>
             
-            <button><IoPlayCircleOutline size={40}/></button>
+            <div>
+                <button><IoPlayCircleOutline size={40}/></button>
+                <button><HiOutlineDotsHorizontal size={40}/></button>
+            </div>
         </ListCardContainer>
     )
 }

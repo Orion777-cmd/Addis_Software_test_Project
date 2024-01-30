@@ -26,9 +26,18 @@ const CardContainer = styled.div`
 
     img{
         width: 100%;
-        height: 70%;
+        height: 90%;
         border-radius: 10px;
 
+    }
+    div{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2em;
+        justify-content: center;
     }
 
    
@@ -39,8 +48,11 @@ export const Card = ({imageUrl}) => {
     return (
         <CardContainer>
             <img src={imageUrl} alt="" />  
-            <p>song Name</p>
-            <p>by:Artist Name</p>
+            <div>
+                <p>song Name</p>
+                <p>by:Artist Name</p>
+            </div>
+            
                
         </CardContainer>
     )

@@ -64,7 +64,7 @@ const HamburgerContainer = styled.button`
 `
 
 const Headercontainer = styled.div`
-    height: 15vh;
+    height: 10vh;
     width: 100%;
     display: flex;
     justify-content: space-between;
