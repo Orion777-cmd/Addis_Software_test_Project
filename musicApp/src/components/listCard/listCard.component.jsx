@@ -3,7 +3,10 @@ import styled from "@emotion/styled"
 import { IoPlayCircleOutline } from "react-icons/io5";
 import { FaRegCirclePause } from "react-icons/fa6";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import MusicPopup from "../musicPopup/musicPopup.component"
+
+import { selectMusicHidden } from "../../redux/music/music.selector"
 
 
 const ListCardContainer = styled.div`
@@ -13,6 +16,7 @@ const ListCardContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0 1em;
+    position: relative;
 
     div{
         display: flex;
@@ -59,8 +63,13 @@ const ListCardContainer = styled.div`
 `;
 
 
-const ListCard = () => {
+const ListCard = ({handleMusicPopupToggle}) => {
     const {mode} = useSelector(state=> state.theme)
+
+    const musicHidden = useSelector(selectMusicHidden)
+    
+
+    console.log("musicPopUp hidden: ", musicHidden)
     return (
         <ListCardContainer>
             <div>
@@ -73,8 +82,9 @@ const ListCard = () => {
             
             <div>
                 <button><IoPlayCircleOutline size={40} color={mode == "dark"? "#fff":"000"}/></button>
-                <button><HiOutlineDotsHorizontal size={40} color={mode == "dark"? "#fff":"000"}/></button>
+                <button onClick={handleMusicPopupToggle}><HiOutlineDotsHorizontal size={40} color={mode == "dark"? "#fff":"000"}/></button>
             </div>
+            {musicHidden? null: <MusicPopup />}
         </ListCardContainer>
     )
 }

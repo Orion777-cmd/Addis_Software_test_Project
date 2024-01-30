@@ -11,7 +11,10 @@ import BassGuitarUrl from "../../assets/bassGuitar.jpg";
 import ConcertUrl from "../../assets/concert.jpg";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
+
+import { selectMusicHidden } from "../../redux/music/music.selector"
+import { toggleMusic } from "../../redux/music/music.reducer"
 
 const RightSideBarContainer = styled.div`
     display: flex;
@@ -129,6 +132,11 @@ const AllSongContainer = styled.div`
 
 const RightSidebar = () => {
     const {mode} = useSelector(state => state.theme)
+    const dispatch = useDispatch()
+    const handleMusicPopupToggle = () => {
+        dispatch(toggleMusic())
+    }
+    
     return (
         <RightSideBarContainer>
             <TitleContainer mode={mode}>
@@ -167,9 +175,9 @@ const RightSidebar = () => {
 
             <AllSongContainer>
                 <h3>Available Songs (<span>3</span>)</h3>
-                <ListCard />
-                <ListCard />
-                <ListCard />
+                <ListCard handleMusicPopupToggle={handleMusicPopupToggle}/>
+                <ListCard handleMusicPopupToggle={handleMusicPopupToggle}/>
+                <ListCard handleMusicPopupToggle={handleMusicPopupToggle}/>
             </AllSongContainer>
         </RightSideBarContainer>
     )

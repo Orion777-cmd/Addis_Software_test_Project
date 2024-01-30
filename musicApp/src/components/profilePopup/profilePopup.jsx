@@ -17,7 +17,7 @@ const ProfilePopupContainer = styled.div`
     // border-radius: 5px;
     // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     // padding: 10px;
-    z-index: 10; /* Ensures it's on top of other content */
+    z-index: 10; 
 
     button {
         color: ${({ mode }) => (mode === "dark" ? "#fff" : "#000")};
