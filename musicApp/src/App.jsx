@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import styled from "@emotion/styled"
 
+import {useSelector } from "react-redux"
+
 const AppContainer = styled.div`
   width: 70%;
   margin: 0 auto;
@@ -32,8 +34,10 @@ function App() {
 
   },[])
 
+  const {mode } = useSelector(state => state.theme)
+
   return (
-    <AppContainer>
+    <AppContainer className={mode == "dark"? 'dark-theme' : 'light-theme'}>
       <Header />
       <Homepage />
       <Footer />

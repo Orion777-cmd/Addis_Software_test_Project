@@ -9,6 +9,10 @@ import { CgProfile } from "react-icons/cg";
 import { CiLight } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
 
+import { toggleTheme } from "../../redux/theme/theme.reducer";
+import {useDispatch, useSelector} from "react-redux"
+
+
 const HamburgerContainer = styled.button`
     margin-right: 2em;
 
@@ -125,6 +129,13 @@ const LeftContainer = styled.div`
 `;
 
 export const Header = () => {
+    const dispatch = useDispatch();
+    const handleThemeToggle = () => {
+        dispatch(toggleTheme());
+    }
+
+    const {mode} = useSelector(state => state.theme)
+    console.log("current theme: ", mode);
     return (
         <Headercontainer>
             <LeftContainer>
@@ -135,7 +146,7 @@ export const Header = () => {
             <RightContainer>
                 <button><MdOutlineMail size="30px" color="#000" /></button>
                 <button><IoIosNotificationsOutline size="30px" color="#000" /></button>
-                <button><MdDarkMode size={30}/></button>
+                <button onClick={handleThemeToggle}>{mode == "light"? <MdDarkMode size={30}/>: <CiLight size={30}/>}</button>
                 <button><CgProfile size="30px" color="#000" /></button>
             </RightContainer>
             

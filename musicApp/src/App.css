@@ -4,7 +4,17 @@
   margin: 0 auto;
   /* display: flex;
   flex-direction: column; */
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 0 2rem;
-  background-color: transparent;
+}
+
+.dark-theme {
+  background: #000;
+  color : #fff;
+}
+
+.light-theme {
+  background: #ffffffd0;
+  color: #000;
+
 }
