@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 import { IoMdHome } from "react-icons/io";
 import { MdFavoriteBorder } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
-import { RiMusicFill } from "react-icons/ri";
+import { PiPlaylistFill } from "react-icons/pi";;
 import { FaCompactDisc } from "react-icons/fa";
 import { HiAdjustments } from "react-icons/hi";
 import { IoIosAddCircle } from "react-icons/io";
@@ -40,7 +40,7 @@ const LeftSidebar = () => {
             <button><IoMdHome size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button><MdFavoriteBorder size={30} color={mode == "dark"? "#fff":"000"}/></button>
             {/* <button><MdFavorite size={30}/></button> */}
-            <button><RiMusicFill size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button><PiPlaylistFill size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button><FaCompactDisc size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button><HiAdjustments size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button><IoIosAddCircle size={30} color={mode == "dark"? "#fff":"000"}/></button>

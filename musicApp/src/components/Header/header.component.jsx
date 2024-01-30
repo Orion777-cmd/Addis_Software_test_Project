@@ -10,10 +10,13 @@ import { CiLight } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
 
 import { toggleTheme } from "../../redux/theme/theme.reducer";
+import {toggleProfile} from "../../redux/profile/profile.reducer";
 import {useDispatch, useSelector} from "react-redux"
-
+import { selectProfileHidden } from "../../redux/profile/profile.selector";
+import ProfilePopup from "../profilePopup/profilePopup";
 
 const Headercontainer = styled.div`
+    position: relative;
     height: 10vh;
     width: 100%;
     display: flex;
@@ -81,6 +84,11 @@ export const Header = () => {
         dispatch(toggleTheme());
     }
 
+    const handleProfileToggle = () => {
+        dispatch(toggleProfile());
+    }
+
+    const profileState = useSelector(selectProfileHidden);
     const {mode} = useSelector(state => state.theme)
     console.log("current theme: ", mode);
     return (
@@ -94,7 +102,8 @@ export const Header = () => {
                 <button><MdOutlineMail size="30px" color={mode == "dark"? "#fff":"000"} /></button>
                 <button><IoIosNotificationsOutline size="30px" color={mode == "dark"? "#fff":"000"} /></button>
                 <button onClick={handleThemeToggle}>{mode == "light"? <MdDarkMode size={30}/>: <CiLight color={mode == "dark"? "#fff":"000"} size={30}/>}</button>
-                <button><CgProfile size="30px" color={mode == "dark"? "#fff":"000"} /></button>
+                <button onClick={handleProfileToggle}><CgProfile size="30px" color={mode == "dark"? "#fff":"000"} /></button>
+                {!profileState? <ProfilePopup />: null}
             </RightContainer>
             
         </Headercontainer>
