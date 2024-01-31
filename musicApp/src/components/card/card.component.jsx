@@ -7,6 +7,10 @@ import {FaHeart} from "react-icons/fa"
 import {BsRepeat, BsThreeDots} from "react-icons/bs"
 import {BiShuffle} from "react-icons/bi"
 import styled from "@emotion/styled";
+import { FaCirclePause } from "react-icons/fa6";
+import { FaCirclePlay } from "react-icons/fa6";
+
+import {useSelector} from "react-redux"
 
 const CardContainer = styled.div`
     width: 200px;
@@ -18,6 +22,12 @@ const CardContainer = styled.div`
     gap: 1em;
     padding: 1em;
     border-radius: 10px;
+
+    :hover{
+        .imageContainer button{
+            opacity: 1;
+        }
+    }
     p{
         margin: 0;
         padding: 0;
@@ -28,9 +38,24 @@ const CardContainer = styled.div`
         width: 100%;
         height: 90%;
         border-radius: 10px;
+        position: relative;
+    }
+    .imageContainer{
+        position:relative;
+
+        button{
+            opacity: 0;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            bottom: 5%;
+            right: 0%;
+            transition: opacity 0.3s ease-in-out;
+        }
 
     }
-    div{
+    .detailContainer{
         width: 100%;
         height: 10%;
         display: flex;
@@ -49,10 +74,15 @@ const CardContainer = styled.div`
 
 
 export const Card = ({imageUrl}) => {
+    const {mode} = useSelector(state => state.theme)
     return (
         <CardContainer>
-            <img src={imageUrl} alt="" />  
-            <div>
+            <div className="imageContainer" mode={mode}>
+                <img src={imageUrl} alt="" />
+                <button><FaCirclePlay size={40} color="#fff"/> </button> 
+            </div>
+             
+            <div className="detailContainer">
                 <p>song Name</p>
                 <p className="artist-name">by:Artist Name</p>
             </div>
