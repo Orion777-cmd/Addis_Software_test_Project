@@ -27,6 +27,7 @@ const CardContainer = styled.div`
         .imageContainer button{
             opacity: 1;
         }
+        background: rgba(0 , 0, 0, 0.1);
     }
     p{
         margin: 0;
