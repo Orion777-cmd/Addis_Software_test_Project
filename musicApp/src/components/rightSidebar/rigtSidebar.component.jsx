@@ -123,6 +123,7 @@ const AllSongContainer = styled.div`
     justify-content: flex-start;
     align-items: space-between;
     gap: 0.5em;
+    
     h3 {
         margin: 0;
         padding: 0;

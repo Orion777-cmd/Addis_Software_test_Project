@@ -38,6 +38,10 @@ const CardContainer = styled.div`
         align-items: center;
         gap: 0.2em;
         justify-content: center;
+
+        .artist-name{
+            text-decoration: underline;
+        }
     }
 
    
@@ -50,7 +54,7 @@ export const Card = ({imageUrl}) => {
             <img src={imageUrl} alt="" />  
             <div>
                 <p>song Name</p>
-                <p>by:Artist Name</p>
+                <p className="artist-name">by:Artist Name</p>
             </div>
             
                

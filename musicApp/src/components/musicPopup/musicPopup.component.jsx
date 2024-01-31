@@ -13,18 +13,19 @@ import {useSelector} from "react-redux"
 const MusicPopupContainer = styled.div`
     position: absolute;
     width: 250px;
-    height: 100px;
+    
     top: -10px;
     right: 70px;
     display: flex;
-    background: red;
+    // color: ${({ mode }) => (mode === "dark" ? "#fff" : "#000")};
+    background-color: ${({mode}) => (mode === "dark"? "#000": "#fff")};
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    background:transparent;
+    padding: 10px;
 
-    // border: 1px solid #ccc;
-    // border-radius: 5px;
+    border: 1px solid #fff;
+    border-radius: 20px;
     // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     // padding: 10px;
     z-index: 10; 
@@ -33,7 +34,7 @@ const MusicPopupContainer = styled.div`
 `
 const ButtonContainer = styled.div`
     color: ${({ mode }) => (mode === "dark" ? "#fff" : "#000")};
-    background: ${({mode}) => (mode === "dark "? "#fff": "#000")}
+    background-color: transparent;
     border: none;
     display: flex;
     align-items: center;
@@ -42,7 +43,8 @@ const ButtonContainer = styled.div`
     gap: 2em;
 
     button{
-        background-color: transparent;
+        color: ${({ mode }) => (mode === "dark" ? "#fff" : "$000")};
+        
         border: none;
         cursor: pointer;
         font-size: 1em;
@@ -53,6 +55,10 @@ const ButtonContainer = styled.div`
         font-size: 0.7em;
         text-decoration: none;
         margin-top: 0.5em;
+
+        :hover{
+            text-decoration: underline;
+        }
     }
 `
 
@@ -60,7 +66,7 @@ const MusicPopup = () => {
 
     const {mode} = useSelector(state => state.theme)
     return (
-        <MusicPopupContainer>
+        <MusicPopupContainer mode={mode}>
             <ButtonContainer mode={mode}>
                 <MdEdit size={20} />
                 <button>edit music</button>

@@ -9,7 +9,6 @@ import MusicPopup from "../musicPopup/musicPopup.component"
 import { selectMusicHidden } from "../../redux/music/music.selector"
 import { toggleMusic } from "../../redux/music/music.reducer";
 
-
 const ListCardContainer = styled.div`
     width: 100%;
     height: 60px;
@@ -47,11 +46,9 @@ const ListCardContainer = styled.div`
                 font-size: 0.6em;
             }
         }
-        .left-buttons{
-            margin-left: 20px;
-        }
+        
     }
-
+   
     button{
         background-color: transparent;
         border: none;
