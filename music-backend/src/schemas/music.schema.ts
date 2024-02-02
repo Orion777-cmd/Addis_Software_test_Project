@@ -3,8 +3,7 @@ import {HydratedDocument} from 'mongoose';
 
 @Schema()
 export class Music {
-    @Prop()
-    id: string;
+    
     @Prop({required: true,})
     title: string;
     @Prop({required: true, })

@@ -3,7 +3,7 @@ import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
 import { InjectModel } from "@nestjs/mongoose";
 import { Music } from "../schemas/music.schema";
-import { Model } from "mongoose";
+import { Model, model } from "mongoose";
 
 @Injectable()
 export class MusicService {
@@ -17,15 +17,15 @@ export class MusicService {
     return this.musicModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} music`;
+  async findOne(id: string) {
+    return this.musicModel.findById(id).exec();
   }
 
-  update(id: number, updateMusicDto: UpdateMusicDto) {
-    return `This action updates a #${id} music`;
+  async update(id: string, updateMusicDto: UpdateMusicDto) {
+    return this.musicModel.findByIdAndUpdate (id, updateMusicDto, {new: true}).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} music`;
+  async remove(id: string) {
+    return this.musicModel.findByIdAndDelete(id).exec();
   }
 }

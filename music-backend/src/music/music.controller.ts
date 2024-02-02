@@ -19,16 +19,16 @@ export class MusicController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.musicService.findOne(+id);
+    return this.musicService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMusicDto: UpdateMusicDto) {
-    return this.musicService.update(+id, updateMusicDto);
+    return this.musicService.update(id, updateMusicDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.musicService.remove(+id);
+    return this.musicService.remove(id);
   }
 }
