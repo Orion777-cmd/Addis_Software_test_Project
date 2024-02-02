@@ -2,6 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import MusicForm from "../MusicForm/MusicForm.component";
+import {useDispatch, useSelector} from "react-redux";
+import { selectModalState } from "../../redux/modal/modal.selector";
+import { toggleModal } from "../../redux/modal/modal.reducer";
 
 const ModalContainer = styled.div`
 
@@ -12,7 +15,7 @@ const ModalContainer = styled.div`
     right: 0;
     bottom: 0;
     position: fixed;
-
+    z-index: 10;
     .overlay{
         width: 100vw;
         height: 100vh;
@@ -39,10 +42,20 @@ const ModalContainer = styled.div`
     }
     `;
 
-const Modal = ({toggleModal}) => {
+const Modal = () => {
+    const {mode}  = useSelector(state => state.theme)
+    const modalState = useSelector(selectModalState)
+    const dispatch = useDispatch()
+
+
+    const handleHideModal = () => {
+        if (!modalState) {
+            dispatch(toggleModal())
+        }
+    }
     return (
-        <ModalContainer>
-            <div className="overlay" onClick={toggleModal}>
+        <ModalContainer mode={mode} onClick={handleHideModal}>
+            <div className="overlay" >
 
             </div>
             <div className="modal-content">

@@ -10,7 +10,9 @@ import styled from "@emotion/styled";
 import { FaCirclePause } from "react-icons/fa6";
 import { FaCirclePlay } from "react-icons/fa6";
 
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
+import { selectMusicPauseButton } from "../../redux/music/music.selector";
+import {toggleMusicButton} from "../../redux/music/music.reducer";
 
 const CardContainer = styled.div`
     width: 200px;
@@ -76,11 +78,17 @@ const CardContainer = styled.div`
 
 export const Card = ({imageUrl}) => {
     const {mode} = useSelector(state => state.theme)
+    const playButton = useSelector(selectMusicPauseButton);
+    const dispatch = useDispatch();
+
+    const handlePlayPauseToggle = () => {
+        dispatch(toggleMusicButton());
+    }
     return (
         <CardContainer>
             <div className="imageContainer" mode={mode}>
                 <img src={imageUrl} alt="" />
-                <button><FaCirclePlay size={40} color="#fff"/> </button> 
+                <button onClick={handlePlayPauseToggle}>{playButton? <FaCirclePlay size={40} color="#fff"/> : <FaCirclePause size={40} color="#fff" /> }</button> 
             </div>
              
             <div className="detailContainer">

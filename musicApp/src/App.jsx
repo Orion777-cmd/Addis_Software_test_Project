@@ -11,7 +11,7 @@ const AppContainer = styled.div`
 // import './App.css'
 
 import Homepage from './pages/Homepage/homepage.component';
-import { createMusic } from './firebase/firebase.utils';
+
 import {Header} from './components/Header/header.component';
 import Footer from './components/footer/footer.component';
 
@@ -28,8 +28,6 @@ function App() {
     audioFileUrl: 'https://example.com/audio-file.mp3'
   };
   useEffect( () => {
-
-    createMusic(musicData);
 
   },[])
 

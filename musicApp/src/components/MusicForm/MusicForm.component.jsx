@@ -1,7 +1,24 @@
 import React, { useState } from 'react';
 import { Box, Button } from 'rebass';
 import Input from '../CustomInput/customInput.component';
+import styled from '@emotion/styled';
 
+import {useSelector} from "react-redux"
+
+const FormContainer = styled.div`
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid {(mode) => (mode === "dark" ? "#fff" : "#000")};
+  background: ${(mode) => (mode === "dark" ? "#000" : "#fff")};
+  color: ${(mode) => (mode === "dark" ? "#fff" : "#000")};
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+`;
 const MusicForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     title: '',
@@ -33,8 +50,11 @@ const MusicForm = ({ onSubmit }) => {
     });
   };
 
+  const {mode} = useSelector(state => state.theme)
+
+
   return (
-    <Box as="form" onSubmit={handleSubmit} maxWidth={400} m="0 auto">
+    <FormContainer className='container' mode={mode} as="form" onSubmit={handleSubmit} onClick={(e)=> e.stopPropagation()} >
       <Box mb={3}>
         <label>Title:</label>
         <Input type="text" name="title" value={formData.title} onChange={handleChange} />
@@ -55,12 +75,9 @@ const MusicForm = ({ onSubmit }) => {
         <label>Cover Art URL:</label>
         <Input type="text" name="coverArtUrl" value={formData.coverArtUrl} onChange={handleChange} />
       </Box>
-      <Box mb={3}>
-        <label>Audio File URL:</label>
-        <Input type="text" name="audioFileUrl" value={formData.audioFileUrl} onChange={handleChange} />
-      </Box>
+     
       <Button type="submit" >Submit</Button>
-    </Box>
+    </FormContainer>
   );
 };
 

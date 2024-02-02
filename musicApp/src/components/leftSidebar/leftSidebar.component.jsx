@@ -8,7 +8,10 @@ import { FaCompactDisc } from "react-icons/fa";
 import { HiAdjustments } from "react-icons/hi";
 import { IoIosAddCircle } from "react-icons/io";
 
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
+import Modal from "../modal/modal.component";
+import { toggleModal } from "../../redux/modal/modal.reducer";
+import { selectModalState } from "../../redux/modal/modal.selector";
 
 const LeftSidebarContainer = styled.div`
     width: 5%;
@@ -35,16 +38,27 @@ const LeftSidebarContainer = styled.div`
 
 const LeftSidebar = () => {
     const {mode} = useSelector(state => state.theme)
+    const dispatch = useDispatch()
+    const modalState = useSelector(selectModalState)
+    const handleToggleModal = () => {
+        dispatch(toggleModal())
+    }
+    console.log("modalState", modalState)
+
+    
     return (
-        <LeftSidebarContainer>
+        <>
+        <LeftSidebarContainer >
             <button><IoMdHome size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button><MdFavoriteBorder size={30} color={mode == "dark"? "#fff":"000"}/></button>
             {/* <button><MdFavorite size={30}/></button> */}
             <button><PiPlaylistFill size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button><FaCompactDisc size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button><HiAdjustments size={30} color={mode == "dark"? "#fff":"000"}/></button>
-            <button><IoIosAddCircle size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button onClick={handleToggleModal}><IoIosAddCircle size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            {!modalState && <Modal />}
         </LeftSidebarContainer>
+        </>
     )
 }
 
