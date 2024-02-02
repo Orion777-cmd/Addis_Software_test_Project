@@ -12,7 +12,10 @@ import {BiShuffle} from "react-icons/bi"
 import { BsArrowsAngleExpand } from "react-icons/bs";
 import { BsArrowsAngleContract } from "react-icons/bs";
 
-import {useSelector} from "react-redux";
+
+import {useDispatch, useSelector} from "react-redux";
+import { selectMusicPauseButton } from "../../redux/music/music.selector"
+import {toggleMusicButton} from "../../redux/music/music.reducer"
 
 const MiddleContainer = styled.div`
     display: flex;
@@ -80,6 +83,14 @@ const ControlButtonsContainer = styled.div`
 
 const Middle = () => {
     const {mode} = useSelector(state => state.theme)
+    const dispatch = useDispatch();
+    const pauseButton = useSelector(selectMusicPauseButton);
+
+    const handlePlayPauseToggle = () => {
+        dispatch(toggleMusicButton())
+    }
+
+    console.log("pauseButton: ", pauseButton);
     return (
         <MiddleContainer>
            
@@ -102,7 +113,7 @@ const Middle = () => {
             <ControlButtonsContainer>
                 <button><BsArrowsAngleContract size={35} color={mode == "dark"? "#fff":"000"}/></button>
                 <button><TbPlayerTrackPrevFilled size={35} color={mode == "dark"? "#fff":"000"}/></button>                    
-                <button><PiPlayFill size={35} color={mode == "dark"? "#fff":"000"}/></button>
+                <button onClick={handlePlayPauseToggle}>{pauseButton? <PiPlayFill size={35} color={mode == "dark"? "#fff":"000"}/>: <PiPauseFill size={35} color={mode == "dark"? "#fff":"000"}/>}</button>
                 <button><TbPlayerTrackNextFilled size={35} color={mode == "dark"? "#fff":"000"}/></button>
                 <button><BsRepeat size={35} color={mode == "dark"? "#fff":"000"}/></button>
                 <button><BiShuffle size={35} color={mode == "dark"? "#fff":"000"}/></button>

@@ -1,7 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit"
 
 const initialState = {
-    hidden: -1
+    hidden: -1,
+    pauseButton: true,
 }
 
 const profileSlice = createSlice({
@@ -15,11 +16,14 @@ const profileSlice = createSlice({
             }else {
                 state.hidden = action.payload.idx;
             }
+        }, 
+        toggleMusicButton: (state, action) => {
+            state.pauseButton = !state.pauseButton
         }
     }
 
 })
 
-export const {toggleMusic} = profileSlice.actions
+export const {toggleMusic, toggleMusicButton} = profileSlice.actions
 
 export default profileSlice.reducer 

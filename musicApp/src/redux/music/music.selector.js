@@ -6,3 +6,10 @@ export const selectMusicHidden = createSelector(
     [selectMusicProfile], 
     music => music.hidden
 )
+
+
+
+export const selectMusicPauseButton = createSelector(
+    [selectMusicProfile],
+    music => music.pauseButton,
+)
