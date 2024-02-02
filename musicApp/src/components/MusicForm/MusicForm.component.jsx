@@ -18,6 +18,15 @@ const FormContainer = styled.div`
   gap: 1em;
   justify-content: center;
   align-items: center;
+
+  button{
+    background-color: ${(mode) => (mode === "dark" ? "#fff" : "#000")};
+    color: ${(mode) => (mode === "dark" ? "#000" : "#fff")};
+    border : none;
+    cursor: pointer;
+    
+
+  }
 `;
 const MusicForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -39,7 +48,7 @@ const MusicForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    
     setFormData({
       title: '',
       artist: '',
@@ -48,6 +57,7 @@ const MusicForm = ({ onSubmit }) => {
       coverArtUrl: '',
       audioFileUrl: ''
     });
+    
   };
 
   const {mode} = useSelector(state => state.theme)
@@ -55,23 +65,23 @@ const MusicForm = ({ onSubmit }) => {
 
   return (
     <FormContainer className='container' mode={mode} as="form" onSubmit={handleSubmit} onClick={(e)=> e.stopPropagation()} >
-      <Box mb={3}>
+      <Box mb={1}>
         <label>Title:</label>
         <Input type="text" name="title" value={formData.title} onChange={handleChange} />
       </Box>
-      <Box mb={3}>
+      <Box mb={1}>
         <label>Artist:</label>
         <Input type="text" name="artist" value={formData.artist} onChange={handleChange} />
       </Box>
-      <Box mb={3}>
+      <Box mb={1}>
         <label>Genre:</label>
         <Input type="text" name="genre" value={formData.genre} onChange={handleChange} />
       </Box>
-      <Box mb={3}>
+      <Box mb={1}>
         <label>Duration:</label>
         <Input type="text" name="duration" value={formData.duration} onChange={handleChange} />
       </Box>
-      <Box mb={3}>
+      <Box mb={1}>
         <label>Cover Art URL:</label>
         <Input type="text" name="coverArtUrl" value={formData.coverArtUrl} onChange={handleChange} />
       </Box>
