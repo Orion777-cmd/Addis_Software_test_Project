@@ -1,15 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
+import { InjectModel } from "@nestjs/mongoose";
+import { Music } from "../schemas/music.schema";
+import { Model } from "mongoose";
 
 @Injectable()
 export class MusicService {
-  create(createMusicDto: CreateMusicDto) {
-    return 'This action adds a new music';
+  constructor(@InjectModel(Music.name) private musicModel: Model<Music>) {}
+  async create(createMusicDto: CreateMusicDto) {
+    const createdCat = new this.musicModel(createMusicDto);
+    return createdCat.save();
   }
 
-  findAll() {
-    return `This action returns all music`;
+  async findAll(): Promise<Music[]> {
+    return this.musicModel.find().exec();
   }
 
   findOne(id: number) {
