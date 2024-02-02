@@ -13,3 +13,8 @@ export const selectMusicPauseButton = createSelector(
     [selectMusicProfile],
     music => music.pauseButton,
 )
+
+export const selectMusicData = createSelector(
+    [selectMusicProfile],
+    music => music.music
+)

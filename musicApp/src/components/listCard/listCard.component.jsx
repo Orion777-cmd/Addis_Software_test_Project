@@ -1,4 +1,4 @@
-import react from "react"
+import {useEffect} from "react"
 import styled from "@emotion/styled"
 import { IoPlayCircleOutline } from "react-icons/io5";
 import { FaRegCirclePause } from "react-icons/fa6";
@@ -8,6 +8,10 @@ import MusicPopup from "../musicPopup/musicPopup.component"
 
 import { selectMusicHidden } from "../../redux/music/music.selector"
 import { toggleMusic } from "../../redux/music/music.reducer";
+import { selectMusicData } from "../../redux/music/music.selector";
+
+import { getMusicAction } from "../../redux/music/music.reducer";
+
 
 const ListCardContainer = styled.div`
     width: 100%;
@@ -67,9 +71,17 @@ const ListCardContainer = styled.div`
 const ListCard = ({idx}) => {
     const {mode} = useSelector(state=> state.theme)
     console.log("listcard index: ", idx)
-
-    const musicHidden = useSelector(selectMusicHidden)
+    const id = "65bd51e1792dbc024bf9255b";
     const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getMusicAction(id))
+    }, [id, dispatch])
+
+    const {data, isLoading, error} = useSelector(selectMusicData);
+
+    console.log("data: ", data, isLoading)
+    const musicHidden = useSelector(selectMusicHidden)
+    
     const handleMusicPopupToggle = () => {
         dispatch(toggleMusic({
             idx : idx
@@ -79,14 +91,16 @@ const ListCard = ({idx}) => {
     console.log("musicPopUp hidden: ", musicHidden)
     return (
         <ListCardContainer>
+            {isLoading? <div>isLoading....</div>: 
             <div>
-                <img src="https://picsum.photos/200" alt="cover" />
+                <img src={data.coverArtUrl? data.coverArtUrl: "https://picsum.photos/200"} alt="cover" />
                 <div className="info">
-                    <h3>title</h3>
-                    <p>artist</p>
+                    <h3>{data.title}</h3>
+                    <p>{data.artist}</p>
                 </div>
             </div>
             
+            }
             <div className="left-buttons">
                 <button><IoPlayCircleOutline size={40} color={mode == "dark"? "#fff":"000"}/></button>
                 <button onClick={handleMusicPopupToggle}><HiOutlineDotsHorizontal size={40} color={mode == "dark"? "#fff":"000"}/></button>

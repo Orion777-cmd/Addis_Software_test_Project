@@ -1,8 +1,10 @@
-import {all} from "redux-saga/effects";
+import {all, fork} from "redux-saga/effects";
+import { watchGetMusic } from "./music/music.saga";
 
-
-export default function* rootSaga() {
+const rootSaga = function* () {
     yield all([
-
-    ]);
+        fork(watchGetMusic)
+    ])
 }
+
+export default rootSaga;
