@@ -65,8 +65,8 @@ const ButtonContainer = styled.div`
     }
 `
 
-const MusicPopup = ({idx}) => {
-    console.log("idx", idx)
+const MusicPopup = ({id}) => {
+    
     const {mode} = useSelector(state => state.theme)
     const dispatch = useDispatch()
     const modalState = useSelector(selectModalState)
@@ -76,11 +76,12 @@ const MusicPopup = ({idx}) => {
         dispatch(toggleModal());
     }
 
-    const deleteMusic = (e, idx) => {
+    const deleteMusic = (e, id) => {
         e.stopPropagation();
-        dispatch(deleteMusicAction(idx));
+        dispatch(deleteMusicAction(id));
         
     }
+    
 
     return (
         <>

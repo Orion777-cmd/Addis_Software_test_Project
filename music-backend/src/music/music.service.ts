@@ -28,4 +28,19 @@ export class MusicService {
   async remove(id: string) {
     return this.musicModel.findByIdAndDelete(id).exec();
   }
+
+  async findByTitle(title : string){
+    const regex = new RegExp(title, "i");
+    return this.musicModel.find({title: {$regex: regex}}).exec();
+  }
+
+  async findByArtist(artist: string) {
+    const regex = new RegExp(artist, "i");
+    return this.musicModel.find({artist: {$regex: regex}}).exec();
+  }
+
+  async filterByGenre(genre: string) {
+    const regex = new RegExp(genre, "i")
+    return this.musicModel.find({genre: {$regex: regex}}).exec();
+  }
 }

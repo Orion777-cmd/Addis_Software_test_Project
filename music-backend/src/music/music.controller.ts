@@ -24,6 +24,21 @@ export class MusicController {
     return this.musicService.findOne(id);
   }
 
+  @Get("title/:title")
+  findByTitle(@Param('title') title: string) {
+    return this.musicService.findByTitle(title);
+  }
+
+  @Get("artist/:artist")
+  findByArtist(@Param('artist') artist: string) {
+    return this.musicService.findByArtist(artist);
+  }
+
+  @Get("genre/:genre")
+  filterByGenre(@Param('genre') genre: string) {
+    return this.musicService.filterByGenre(genre);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMusicDto: UpdateMusicDto) {
     return this.musicService.update(id, updateMusicDto);
