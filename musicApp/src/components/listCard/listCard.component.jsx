@@ -96,7 +96,7 @@ const ListCard = ({idx, data, isLoading}) => {
                 <button><IoPlayCircleOutline size={40} color={mode == "dark"? "#fff":"000"}/></button>
                 <button onClick={handleMusicPopupToggle}><HiOutlineDotsHorizontal size={40} color={mode == "dark"? "#fff":"000"}/></button>
             </div>
-            {musicHidden === idx && <MusicPopup />}
+            {musicHidden === idx && <MusicPopup idx={data._id}/>}
         </ListCardContainer>
     )
 }

@@ -11,6 +11,7 @@ import Modal from "../modal/modal.component";
 import { useSelector, useDispatch } from "react-redux";
 import { selectModalState } from "../../redux/modal/modal.selector";
 import { toggleModal } from "../../redux/modal/modal.reducer";
+import { deleteMusicAction } from "../../redux/music/music.reducer";
 
 const MusicPopupContainer = styled.div`
     position: absolute;
@@ -64,8 +65,8 @@ const ButtonContainer = styled.div`
     }
 `
 
-const MusicPopup = () => {
-
+const MusicPopup = ({idx}) => {
+    console.log("idx", idx)
     const {mode} = useSelector(state => state.theme)
     const dispatch = useDispatch()
     const modalState = useSelector(selectModalState)
@@ -73,6 +74,12 @@ const MusicPopup = () => {
     const handleToggleModal = (e) => {
         e.stopPropagation();
         dispatch(toggleModal());
+    }
+
+    const deleteMusic = (e, idx) => {
+        e.stopPropagation();
+        dispatch(deleteMusicAction(idx));
+        
     }
 
     return (
@@ -84,7 +91,7 @@ const MusicPopup = () => {
             </ButtonContainer>
             <ButtonContainer mode={mode}>
                 <MdDelete size={20} />
-                <button>delete music</button>
+                <button onClick={(e) => deleteMusic(e, idx)}>delete music</button>
             </ButtonContainer>
             <ButtonContainer mode={mode}>
                 <MdFavorite size={20} />
