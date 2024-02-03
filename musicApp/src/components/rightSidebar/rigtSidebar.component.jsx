@@ -71,6 +71,8 @@ const FilterContainer = styled.div`
 const FilterSongContainer = styled.div`
     width: 100%;
     display: flex;
+    height: 350px;
+    overflow: hidden;
     overflow-x: hidden; /* Hide overflowing content */
     align-items: center;
     gap: 0.1em;

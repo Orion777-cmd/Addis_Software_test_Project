@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Button } from 'rebass';
-import Input from '../CustomInput/customInput.component';
+import CustomInput from '../CustomInput/customInput.component';
 import styled from '@emotion/styled';
 
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
+import { postMusicAction } from '../../redux/music/music.reducer';
+
 
 const FormContainer = styled.div`
   max-width: 400px;
@@ -28,18 +30,21 @@ const FormContainer = styled.div`
 
   }
 `;
-const MusicForm = ({ onSubmit }) => {
+const MusicForm = () => {
+
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     title: '',
     artist: '',
     genre: '',
     duration: '',
     coverArtUrl: '',
-    audioFileUrl: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log("name is: ", name, "value: ", value)
     setFormData((prevData) => ({
       ...prevData,
       [name]: value
@@ -48,14 +53,15 @@ const MusicForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    console.log("Form Data is : ", formData)
+    dispatch(postMusicAction(formData));
     setFormData({
       title: '',
       artist: '',
       genre: '',
       duration: '',
       coverArtUrl: '',
-      audioFileUrl: ''
+      
     });
     
   };
@@ -67,23 +73,23 @@ const MusicForm = ({ onSubmit }) => {
     <FormContainer className='container' mode={mode} as="form" onSubmit={handleSubmit} onClick={(e)=> e.stopPropagation()} >
       <Box mb={1}>
         <label>Title:</label>
-        <Input type="text" name="title" value={formData.title} onChange={handleChange} />
+        <CustomInput type="text" name="title" value={formData.title} handleChange={handleChange} />
       </Box>
       <Box mb={1}>
         <label>Artist:</label>
-        <Input type="text" name="artist" value={formData.artist} onChange={handleChange} />
+        <CustomInput type="text" name="artist" value={formData.artist} handleChange={handleChange} />
       </Box>
       <Box mb={1}>
         <label>Genre:</label>
-        <Input type="text" name="genre" value={formData.genre} onChange={handleChange} />
+        <CustomInput type="text" name="genre" value={formData.genre} handleChange={handleChange} />
       </Box>
       <Box mb={1}>
         <label>Duration:</label>
-        <Input type="text" name="duration" value={formData.duration} onChange={handleChange} />
+        <CustomInput type="text" name="duration" value={formData.duration} handleChange={handleChange} />
       </Box>
       <Box mb={1}>
         <label>Cover Art URL:</label>
-        <Input type="text" name="coverArtUrl" value={formData.coverArtUrl} onChange={handleChange} />
+        <CustomInput type="text" name="coverArtUrl" value={formData.coverArtUrl} handleChange={handleChange} />
       </Box>
      
       <Button type="submit" >Submit</Button>

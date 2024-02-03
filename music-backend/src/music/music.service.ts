@@ -22,7 +22,7 @@ export class MusicService {
   }
 
   async update(id: string, updateMusicDto: UpdateMusicDto) {
-    return this.musicModel.findByIdAndUpdate (id, updateMusicDto, {new: true}).exec();
+    return this.musicModel.findByIdAndUpdate (id, updateMusicDto).exec();
   }
 
   async remove(id: string) {
