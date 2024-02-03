@@ -9,6 +9,10 @@ import {BiShuffle} from "react-icons/bi"
 import styled from "@emotion/styled";
 import { FaCirclePause } from "react-icons/fa6";
 import { FaCirclePlay } from "react-icons/fa6";
+import RoseUrl from "../../assets/roses.jpg";
+import BluesUrl from "../../assets/blues.jpg";
+import BassGuitarUrl from "../../assets/bassGuitar.jpg";
+import ConcertUrl from "../../assets/concert.jpg";
 
 import {useSelector, useDispatch} from "react-redux"
 import { selectMusicPauseButton } from "../../redux/music/music.selector";
@@ -75,8 +79,7 @@ const CardContainer = styled.div`
    
 `
 
-
-export const Card = ({imageUrl}) => {
+export const Card = ({data, isLoading}) => {
     const {mode} = useSelector(state => state.theme)
     const playButton = useSelector(selectMusicPauseButton);
     const dispatch = useDispatch();
@@ -87,13 +90,13 @@ export const Card = ({imageUrl}) => {
     return (
         <CardContainer>
             <div className="imageContainer" mode={mode}>
-                <img src={imageUrl} alt="" />
+                <img src={data? data.coverArtUrl: BluesUrl} alt="" />
                 <button onClick={handlePlayPauseToggle}>{playButton? <FaCirclePlay size={40} color="#fff"/> : <FaCirclePause size={40} color="#fff" /> }</button> 
             </div>
              
             <div className="detailContainer">
-                <p>song Name</p>
-                <p className="artist-name">by:Artist Name</p>
+                <p>{data? data.title: "song name"}</p>
+                <p className="artist-name">by:{data? data.artist: "artist name"}</p>
             </div>
             
                

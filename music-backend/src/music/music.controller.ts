@@ -14,6 +14,7 @@ export class MusicController {
 
   @Get()
   findAll() {
+    console.log("requested")
     return this.musicService.findAll();
   }
 

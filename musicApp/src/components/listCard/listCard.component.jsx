@@ -68,13 +68,8 @@ const ListCardContainer = styled.div`
 
 const ListCard = ({idx, data, isLoading}) => {
     const {mode} = useSelector(state=> state.theme)
-    console.log("listcard index: ", idx)
- 
    
     const dispatch = useDispatch()
-  
-    console.log("list card data: ", data, isLoading)
-    
 
     const musicHidden = useSelector(selectMusicHidden)
     
@@ -84,16 +79,15 @@ const ListCard = ({idx, data, isLoading}) => {
         }))
     }
 
-    console.log("musicPopUp hidden: ", musicHidden)
     return (
         <ListCardContainer>
-            {isLoading? <div>isLoading....</div>: 
+            {
             <div>
-                <img src={data.coverArtUrl? data.coverArtUrl: "https://picsum.photos/200"} alt="cover" />
+                <img src={data? data.coverArtUrl: "https://picsum.photos/200"} alt="cover" />
 
                 <div className="info">
-                    <h3>{data.title}</h3>
-                    <p>{data.artist}</p>
+                    <h3>{data != null? data.title: 'title'}</h3>
+                    <p>{data != null? data.artist: 'artist'}</p>
                 </div>
             </div>
             

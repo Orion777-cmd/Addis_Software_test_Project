@@ -20,3 +20,7 @@ export const MusicState = {
 export const MUSIC = "music";
 
 export const GET_MUSIC_BY_ID = `${MUSIC}/getMusicAction`;
+export const GET_ALL_MUSIC = `${MUSIC}/getAllMusicAction`;
+export const POST_MUSIC = `${MUSIC}/postMusicAction`;
+export const PUT_MUSIC = `${MUSIC}/putMusicAction`;
+export const DELETE_MUSIC = `${MUSIC}/deleteMusicAction`;

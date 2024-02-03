@@ -18,3 +18,8 @@ export const selectMusicData = createSelector(
     [selectMusicProfile],
     music => music.music
 )
+
+export const selectAllMusicData = createSelector(
+    [selectMusicProfile],
+    music => music.musics
+)

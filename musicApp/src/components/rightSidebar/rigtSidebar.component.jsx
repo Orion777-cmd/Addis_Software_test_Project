@@ -6,19 +6,16 @@ import Tag from "../tag/tag.component"
 import Card from "../card/card.component"
 import ListCard from "../listCard/listCard.component"
 // import imageUrl from "../../assets/thinkingOutLoud.png";
-import RoseUrl from "../../assets/roses.jpg";
-import BluesUrl from "../../assets/blues.jpg";
-import BassGuitarUrl from "../../assets/bassGuitar.jpg";
-import ConcertUrl from "../../assets/concert.jpg";
+
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 import {useSelector, useDispatch} from "react-redux"
 
 import { selectMusicHidden } from "../../redux/music/music.selector"
 import { toggleMusic } from "../../redux/music/music.reducer"
-import { selectMusicData } from "../../redux/music/music.selector";
+import { selectAllMusicData } from "../../redux/music/music.selector";
 
-import { getMusicAction } from "../../redux/music/music.reducer";
+import { getAllMusicAction } from "../../redux/music/music.reducer";
 
 const RightSideBarContainer = styled.div`
     display: flex;
@@ -155,16 +152,18 @@ const AllSongContainer = styled.div`
 
 const RightSidebar = () => {
     const {mode} = useSelector(state => state.theme)
-    const id = "65bd5254792dbc024bf9255d";
+   
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getMusicAction(id));
+        dispatch(getAllMusicAction());
     }, []);
 
 
-    const {data, isLoading, error} = useSelector(selectMusicData);
+    const {data, isLoading, error} = useSelector(selectAllMusicData);
 
+    console.log("data, isloading: ", data, isLoading)
+    console.log("length of the data is: ", data.length)
     
     return (
         <RightSideBarContainer>
@@ -194,16 +193,21 @@ const RightSidebar = () => {
             <FilterSongContainer>
                 <LeftButton><FaArrowLeft color={mode == "dark"? "#fff":"000"}/></LeftButton>
                 <CardContainer>
-                    <Card imageUrl={RoseUrl} />
-                    <Card imageUrl={BluesUrl} />
-                    <Card imageUrl={BassGuitarUrl} />
+                {  isLoading ? <div>Loading...</div>:
+                    data.length > 0? data.map((data, i) => <Card key={i} idx={i} data={data} isLoading={isLoading}/>):
+                    [...Array(5)].map((_, i) => <Card key={i} idx={i} data={null} isLoading={isLoading}/>)
+                }
                 </CardContainer>
                 <RightButton><FaArrowRight color={mode == "dark"? "#fff":"000"}/></RightButton>
             </FilterSongContainer>
 
             <AllSongContainer>
-                <h3>Available Songs (<span>3</span>)</h3>
-                { [...Array(5)].map((_, i) => <ListCard key={i} idx={i} data={data} isLoading={isLoading}/>)}
+                <h3>Available Songs - <span>{data? data.length: "0"}</span></h3>
+
+                {  isLoading ? <div>Loading...</div>:
+                    data.length > 0? data.map((data, i) => <ListCard key={i} idx={i} data={data} isLoading={isLoading}/>):
+                    [...Array(5)].map((_, i) => <ListCard key={i} idx={i} data={null} isLoading={isLoading}/>)
+                }
                 
             </AllSongContainer>
         </RightSideBarContainer>
