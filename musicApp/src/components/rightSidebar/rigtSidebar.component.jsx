@@ -11,8 +11,8 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 import {useSelector, useDispatch} from "react-redux"
 
-import { selectMusicHidden } from "../../redux/music/music.selector"
-import { toggleMusic } from "../../redux/music/music.reducer"
+import { selectModalState } from "../../redux/modal/modal.selector";
+import Modal from "../modal/modal.component"
 import { selectAllMusicData } from "../../redux/music/music.selector";
 
 import { getAllMusicAction } from "../../redux/music/music.reducer";
@@ -71,7 +71,7 @@ const FilterContainer = styled.div`
 const FilterSongContainer = styled.div`
     width: 100%;
     display: flex;
-    height: 350px;
+    height: 300px;
     overflow: hidden;
     overflow-x: hidden; /* Hide overflowing content */
     align-items: center;
@@ -101,11 +101,13 @@ const SliderButton = styled.button`
 const LeftButton = styled(SliderButton)`
     left: 0px;
     top : 10px;
+    z-index: 5;
 `;
 
 const RightButton = styled(SliderButton)`
     right: 5px;
     top : 10px;
+    z-index: 5;
 `;
 
 const CardContainer = styled.div`
@@ -164,10 +166,9 @@ const RightSidebar = () => {
 
     const {data, isLoading, error} = useSelector(selectAllMusicData);
 
-    console.log("data, isloading: ", data, isLoading)
-    console.log("length of the data is: ", data.length)
-    
+    const modalState = useSelector(selectModalState);
     return (
+        <>
         <RightSideBarContainer>
             <TitleContainer mode={mode}>
                 <div>
@@ -213,6 +214,8 @@ const RightSidebar = () => {
                 
             </AllSongContainer>
         </RightSideBarContainer>
+        {!modalState && <Modal />}
+        </>
     )
 }
 

@@ -7,8 +7,10 @@ import { BiSolidAlbum } from "react-icons/bi";
 import { IoMdPerson } from "react-icons/io";
 import { TbShare2 } from "react-icons/tb";
 import { MdDelete } from "react-icons/md";
-
-import {useSelector} from "react-redux"
+import Modal from "../modal/modal.component";
+import { useSelector, useDispatch } from "react-redux";
+import { selectModalState } from "../../redux/modal/modal.selector";
+import { toggleModal } from "../../redux/modal/modal.reducer";
 
 const MusicPopupContainer = styled.div`
     position: absolute;
@@ -65,11 +67,20 @@ const ButtonContainer = styled.div`
 const MusicPopup = () => {
 
     const {mode} = useSelector(state => state.theme)
+    const dispatch = useDispatch()
+    const modalState = useSelector(selectModalState)
+
+    const handleToggleModal = (e) => {
+        e.stopPropagation();
+        dispatch(toggleModal());
+    }
+
     return (
+        <>
         <MusicPopupContainer mode={mode}>
             <ButtonContainer mode={mode}>
                 <MdEdit size={20} />
-                <button>edit music</button>
+                <button onClick={(e) => handleToggleModal(e)}>edit music</button>
             </ButtonContainer>
             <ButtonContainer mode={mode}>
                 <MdDelete size={20} />
@@ -95,7 +106,10 @@ const MusicPopup = () => {
                 <TbShare2 size={20} />
                 <button>Share</button>
             </ButtonContainer>
+           
         </MusicPopupContainer>
+         
+         </>
     )
 }
 

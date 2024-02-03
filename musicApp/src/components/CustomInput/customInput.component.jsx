@@ -23,6 +23,9 @@ const StyledInput = styled.input`
   &:focus {
     outline: 4px auto -webkit-focus-ring-color;
   }
+  :placeholder {
+    font-size: 0.6em;
+  }
 `;
 
 const CustomInput = ({ name, handleChange, value}) => {
