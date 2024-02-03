@@ -6,8 +6,8 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import {useSelector, useDispatch} from "react-redux";
 import MusicPopup from "../musicPopup/musicPopup.component"
 
-import { selectMusicHidden } from "../../redux/music/music.selector"
-import { toggleMusic } from "../../redux/music/music.reducer";
+import { selectCurrentMusicData, selectCurrentMusicPlayPause, selectMusicHidden } from "../../redux/music/music.selector"
+import { toggleCurrentMusic, toggleMusic } from "../../redux/music/music.reducer";
 
 
 
@@ -68,7 +68,8 @@ const ListCardContainer = styled.div`
 
 const ListCard = ({idx, data, isLoading}) => {
     const {mode} = useSelector(state=> state.theme)
-   
+    const playPause = useSelector(selectCurrentMusicPlayPause)
+    const currentMusic = useSelector(selectCurrentMusicData)
     const dispatch = useDispatch()
 
     const musicHidden = useSelector(selectMusicHidden)
@@ -77,6 +78,12 @@ const ListCard = ({idx, data, isLoading}) => {
         dispatch(toggleMusic({
             idx : idx
         }))
+    }
+
+    const handleCurrentMusic = () =>{
+        dispatch(toggleCurrentMusic(
+            data
+        ))
     }
 
     return (
@@ -93,10 +100,10 @@ const ListCard = ({idx, data, isLoading}) => {
             
             }
             <div className="left-buttons">
-                <button><IoPlayCircleOutline size={40} color={mode == "dark"? "#fff":"000"}/></button>
+                <button onClick={handleCurrentMusic}>{playPause && currentMusic._id === data._id? <FaRegCirclePause size={40} color={mode == "dark"? "#fff":"000"}/>:<IoPlayCircleOutline size={40} color={mode == "dark"? "#fff":"000"}/>}</button>
                 <button onClick={handleMusicPopupToggle}><HiOutlineDotsHorizontal size={40} color={mode == "dark"? "#fff":"000"}/></button>
             </div>
-            {musicHidden === idx && <MusicPopup id={data._id}/>}
+            {musicHidden === idx && <MusicPopup data={data}/>}
         </ListCardContainer>
     )
 }

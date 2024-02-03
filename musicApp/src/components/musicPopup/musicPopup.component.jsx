@@ -65,7 +65,7 @@ const ButtonContainer = styled.div`
     }
 `
 
-const MusicPopup = ({id}) => {
+const MusicPopup = ({data}) => {
     
     const {mode} = useSelector(state => state.theme)
     const dispatch = useDispatch()
@@ -73,7 +73,7 @@ const MusicPopup = ({id}) => {
 
     const handleToggleModal = (e) => {
         e.stopPropagation();
-        dispatch(toggleModal());
+        dispatch(toggleModal(data));
     }
 
     const deleteMusic = (e, id) => {
@@ -92,7 +92,7 @@ const MusicPopup = ({id}) => {
             </ButtonContainer>
             <ButtonContainer mode={mode}>
                 <MdDelete size={20} />
-                <button onClick={(e) => deleteMusic(e, idx)}>delete music</button>
+                <button onClick={(e) => deleteMusic(e, data._id)}>delete music</button>
             </ButtonContainer>
             <ButtonContainer mode={mode}>
                 <MdFavorite size={20} />

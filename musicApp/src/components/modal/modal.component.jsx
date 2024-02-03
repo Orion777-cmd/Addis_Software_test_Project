@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import MusicForm from "../MusicForm/MusicForm.component";
 import {useDispatch, useSelector} from "react-redux";
-import { selectModalState } from "../../redux/modal/modal.selector";
-import { toggleModal } from "../../redux/modal/modal.reducer";
+import { selectAddModalState, selectModalState } from "../../redux/modal/modal.selector";
+import { toggleAddModalState, toggleModal } from "../../redux/modal/modal.reducer";
 
 const ModalContainer = styled.div`
 
@@ -42,15 +41,18 @@ const ModalContainer = styled.div`
     }
     `;
 
-const Modal = () => {
+const Modal = ({MusicForm, musicData}) => {
     const {mode}  = useSelector(state => state.theme)
     const modalState = useSelector(selectModalState)
+    const addModalState = useSelector(selectAddModalState)
     const dispatch = useDispatch()
-
 
     const handleHideModal = () => {
         if (!modalState) {
             dispatch(toggleModal())
+        }
+        if (!addModalState){
+            dispatch(toggleAddModalState())
         }
     }
     return (
@@ -59,7 +61,7 @@ const Modal = () => {
 
             </div>
             <div className="modal-content">
-                <MusicForm />
+                <MusicForm musicData={musicData}/>
             </div>
         </ModalContainer>
     )

@@ -15,8 +15,8 @@ import BassGuitarUrl from "../../assets/bassGuitar.jpg";
 import ConcertUrl from "../../assets/concert.jpg";
 
 import {useSelector, useDispatch} from "react-redux"
-import { selectMusicPauseButton } from "../../redux/music/music.selector";
-import {toggleMusicButton} from "../../redux/music/music.reducer";
+import { selectCurrentMusicData, selectCurrentMusicPlayPause } from "../../redux/music/music.selector";
+import {toggleCurrentMusic} from "../../redux/music/music.reducer";
 
 const CardContainer = styled.div`
     width: 200px;
@@ -43,7 +43,7 @@ const CardContainer = styled.div`
 
     img{
         width: 100%;
-        height: 80%;
+        height: 70%;
         border-radius: 10px;
         position: relative;
     }
@@ -64,7 +64,7 @@ const CardContainer = styled.div`
     }
     .detailContainer{
         width: 100%;
-        height: 10%;
+        height: 20%;
         display: flex;
         flex-direction: column;
         align-items:center;
@@ -81,17 +81,20 @@ const CardContainer = styled.div`
 
 export const Card = ({data, isLoading}) => {
     const {mode} = useSelector(state => state.theme)
-    const playButton = useSelector(selectMusicPauseButton);
+    const playButton = useSelector(selectCurrentMusicPlayPause);
+    const currentMusic = useSelector(selectCurrentMusicData)
     const dispatch = useDispatch();
 
     const handlePlayPauseToggle = () => {
-        dispatch(toggleMusicButton());
+        dispatch(toggleCurrentMusic(
+            data
+        ));
     }
     return (
         <CardContainer>
             <div className="imageContainer" mode={mode}>
                 <img src={data? data.coverArtUrl: BluesUrl} alt="" />
-                <button onClick={handlePlayPauseToggle}>{playButton? <FaCirclePlay size={40} color="#fff"/> : <FaCirclePause size={40} color="#fff" /> }</button> 
+                <button onClick={handlePlayPauseToggle}>{playButton && currentMusic._id === data._id?  <FaCirclePause size={40} color="#fff" /> :<FaCirclePlay size={40} color="#fff"/> }</button> 
             </div>
              
             <div className="detailContainer">

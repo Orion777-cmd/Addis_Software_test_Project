@@ -13,6 +13,7 @@ import {useSelector, useDispatch} from "react-redux"
 
 import { selectModalState } from "../../redux/modal/modal.selector";
 import Modal from "../modal/modal.component"
+import EditMusicForm from "../editMusicForm/editMusicForm.component";
 import { selectAllMusicData } from "../../redux/music/music.selector";
 
 import { getAllMusicAction } from "../../redux/music/music.reducer";
@@ -73,7 +74,6 @@ const FilterSongContainer = styled.div`
     display: flex;
     height: 300px;
     overflow: hidden;
-    overflow-x: hidden; /* Hide overflowing content */
     align-items: center;
     gap: 0.1em;
     justify-content: center; 
@@ -214,7 +214,7 @@ const RightSidebar = () => {
                 
             </AllSongContainer>
         </RightSideBarContainer>
-        {!modalState && <Modal />}
+        {!modalState && <Modal MusicForm={EditMusicForm} musicData={data}/>}
         </>
     )
 }

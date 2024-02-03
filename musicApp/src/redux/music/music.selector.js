@@ -9,9 +9,14 @@ export const selectMusicHidden = createSelector(
 
 
 
-export const selectMusicPauseButton = createSelector(
+export const selectCurrentMusicPlayPause = createSelector(
     [selectMusicProfile],
-    music => music.pauseButton,
+    music => music.currentMusic.playPause,
+)
+
+export const selectCurrentMusicData = createSelector(
+    [selectMusicProfile],
+    music => music.currentMusic.data
 )
 
 export const selectMusicData = createSelector(

@@ -14,8 +14,8 @@ import { BsArrowsAngleContract } from "react-icons/bs";
 
 
 import {useDispatch, useSelector} from "react-redux";
-import { selectMusicPauseButton } from "../../redux/music/music.selector"
-import {toggleMusicButton} from "../../redux/music/music.reducer"
+import { selectCurrentMusicData, selectCurrentMusicPlayPause } from "../../redux/music/music.selector"
+import {toggleCurrentMusic} from "../../redux/music/music.reducer"
 
 const MiddleContainer = styled.div`
     display: flex;
@@ -84,10 +84,11 @@ const ControlButtonsContainer = styled.div`
 const Middle = () => {
     const {mode} = useSelector(state => state.theme)
     const dispatch = useDispatch();
-    const pauseButton = useSelector(selectMusicPauseButton);
+    const pauseButton = useSelector(selectCurrentMusicPlayPause);
+    const musicData = useSelector(selectCurrentMusicData);
 
     const handlePlayPauseToggle = () => {
-        dispatch(toggleMusicButton())
+        dispatch(toggleCurrentMusic())
     }
 
     console.log("pauseButton: ", pauseButton);
@@ -97,23 +98,23 @@ const Middle = () => {
             <Turntable />           
             
             <NameContainer>
-                <p>Song Name</p>
-                <p>Artist Name</p>
+                <p>{musicData? musicData.title: 'song name'}</p>
+                <p>{musicData? musicData.artist: 'artist name'}</p>
             </NameContainer>
             <GenreContainer>
-                <Tag Genre="classic"/>
+                <Tag Genre={musicData? musicData.genre : 'genre'}/>
             </GenreContainer>
 
             <PlayerContainer>
                 <p>0:00</p>
                 <ProgressBar />
-                <p>3:30</p>
+                <p>{musicData? musicData.duration: '3:30'}</p>
             </PlayerContainer>
             
             <ControlButtonsContainer>
                 <button><BsArrowsAngleContract size={35} color={mode == "dark"? "#fff":"000"}/></button>
                 <button><TbPlayerTrackPrevFilled size={35} color={mode == "dark"? "#fff":"000"}/></button>                    
-                <button onClick={handlePlayPauseToggle}>{pauseButton? <PiPlayFill size={35} color={mode == "dark"? "#fff":"000"}/>: <PiPauseFill size={35} color={mode == "dark"? "#fff":"000"}/>}</button>
+                <button onClick={handlePlayPauseToggle}>{pauseButton? <PiPauseFill size={35} color={mode == "dark"? "#fff":"000"}/>: <PiPlayFill size={35} color={mode == "dark"? "#fff":"000"}/>}</button>
                 <button><TbPlayerTrackNextFilled size={35} color={mode == "dark"? "#fff":"000"}/></button>
                 <button><BsRepeat size={35} color={mode == "dark"? "#fff":"000"}/></button>
                 <button><BiShuffle size={35} color={mode == "dark"? "#fff":"000"}/></button>

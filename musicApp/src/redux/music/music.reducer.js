@@ -2,7 +2,10 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const initialState = {
     hidden: -1,
-    pauseButton: false,
+    currentMusic: {
+        playPause: false,
+        data: null,
+    },
     music: {
         data: null,
         isLoading: false,
@@ -27,8 +30,9 @@ const profileSlice = createSlice({
                 state.hidden = action.payload.idx;
             }
         }, 
-        toggleMusicButton: (state, action) => {
-            state.pauseButton = !state.pauseButton
+        toggleCurrentMusic: (state, action) => {
+            state.currentMusic.playPause = !state.currentMusic.playPause;
+            state.currentMusic.data = action.payload;
         }, 
 
         getMusicAction: (state, {payload: id}) => {
@@ -146,7 +150,7 @@ const profileSlice = createSlice({
 })
 
 export const {toggleMusic,
-    toggleMusicButton,
+    toggleCurrentMusic,
     getMusicAction,
     getMusicErrorAction,
     getMusicSuccessAction,

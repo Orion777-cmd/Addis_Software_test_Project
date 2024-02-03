@@ -16,8 +16,9 @@ import { getAllMusicErrorAction,
     getMusicByArtistErrorAction,
     getMusicByGenreSuccessAction,
     getMusicByGenreErrorAction,
+    getAllMusicAction,
     } from "./music.reducer"
-import { GET_MUSIC_BY_ID, GET_ALL_MUSIC, POST_MUSIC, PUT_MUSIC, DELETE_MUSIC } from "./music.types";
+import { GET_MUSIC_BY_ID, GET_ALL_MUSIC, POST_MUSIC, PUT_MUSIC, DELETE_MUSIC, GET_MUSIC_BY_ARTIST, GET_MUSIC_BY_GENRE, GET_MUSIC_BY_TITLE } from "./music.types";
 
 
 function* getMusicSaga({ payload: id }) {
@@ -104,6 +105,7 @@ function* createMusicSaga({payload: music}){
 
         const newMusic = yield response.json();
         yield put(postMusicSuccessAction(newMusic));
+        yield put(getAllMusicAction())
 
 
     }catch(error){
@@ -113,8 +115,8 @@ function* createMusicSaga({payload: music}){
 
 function* updateMusicSaga({payload: music}){
     try{
-        const response = yield fetch('http://localhost:3000/music', {
-            method:'PUT',
+        const response = yield fetch(`http://localhost:3000/music/${music._id}`, {
+            method:'PATCH',
             headers: {
                 'Content-Type': "application/json",
             },
@@ -126,6 +128,7 @@ function* updateMusicSaga({payload: music}){
         
         const updatedMusic = yield response.json();
         yield put(putMusicSuccessAction(updatedMusic));
+        yield put(getAllMusicAction())
     }catch (error){
         put(putMusicErrorAction(error.message));
     }
@@ -141,6 +144,7 @@ function* deleteMusicSaga({payload:id}){
         }
         const deletedMusic = yield response.json();
         yield put(deleteMusicSuccessAction(deletedMusic));
+        yield put(getAllMusicAction())
 
     }catch(error){
         yield put(deleteMusicErrorAction(error.message));

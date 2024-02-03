@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import {Button } from "rebass"
-import CustomInput from "../CustomInput/customInput.component";
+
 import {RiNeteaseCloudMusicFill} from "react-icons/ri"
 import { MdOutlineMail } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { Box, Button } from 'rebass';
 import CustomInput from '../CustomInput/customInput.component';
 import styled from '@emotion/styled';
 
 import {useSelector, useDispatch} from "react-redux"
-import { postMusicAction } from '../../redux/music/music.reducer';
+import { putMusicAction } from '../../redux/music/music.reducer';
+import { selectModalData } from '../../redux/modal/modal.selector';
 
 
 const FormContainer = styled.div`
@@ -30,7 +31,7 @@ const FormContainer = styled.div`
 
   }
 `;
-const MusicForm = () => {
+const EditMusicForm = () => {
 
   const dispatch = useDispatch();
 
@@ -41,10 +42,18 @@ const MusicForm = () => {
     duration: '',
     coverArtUrl: '',
   });
+  const data = useSelector(selectModalData)
+  useEffect(() => {
+    if (data != null){
+        setFormData(data);
+    }
+   
+  }, [data]);
 
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("name is: ", name, "value: ", value)
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value
@@ -53,8 +62,8 @@ const MusicForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data is : ", formData)
-    dispatch(postMusicAction(formData));
+  
+    dispatch(putMusicAction(formData));
     setFormData({
       title: '',
       artist: '',
@@ -67,7 +76,6 @@ const MusicForm = () => {
   };
 
   const {mode} = useSelector(state => state.theme)
-
 
   return (
     <FormContainer className='container' mode={mode} as="form" onSubmit={handleSubmit} onClick={(e)=> e.stopPropagation()} >
@@ -92,9 +100,9 @@ const MusicForm = () => {
         <CustomInput type="text" name="coverArtUrl" value={formData.coverArtUrl} handleChange={handleChange} />
       </Box>
      
-      <Button type="submit" >Add</Button>
+      <Button type="submit" >Edit</Button>
     </FormContainer>
   );
 };
 
-export default MusicForm;
+export default EditMusicForm;

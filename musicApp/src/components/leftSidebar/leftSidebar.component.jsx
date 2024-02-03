@@ -8,10 +8,12 @@ import { FaCompactDisc } from "react-icons/fa";
 import { HiAdjustments } from "react-icons/hi";
 import { IoIosAddCircle } from "react-icons/io";
 
+
+import MusicForm from "../MusicForm/MusicForm.component";
 import {useSelector, useDispatch} from "react-redux"
 import Modal from "../modal/modal.component";
-import { toggleModal } from "../../redux/modal/modal.reducer";
-import { selectModalState } from "../../redux/modal/modal.selector";
+import { toggleAddModalState } from "../../redux/modal/modal.reducer";
+import { selectAddModalState } from "../../redux/modal/modal.selector";
 
 const LeftSidebarContainer = styled.div`
     width: 5%;
@@ -39,9 +41,9 @@ const LeftSidebarContainer = styled.div`
 const LeftSidebar = () => {
     const {mode} = useSelector(state => state.theme)
     const dispatch = useDispatch()
-    const modalState = useSelector(selectModalState)
+    const modalState = useSelector(selectAddModalState)
     const handleToggleModal = () => {
-        dispatch(toggleModal())
+        dispatch(toggleAddModalState())
     }
     console.log("modalState", modalState)
 
@@ -56,7 +58,7 @@ const LeftSidebar = () => {
             <button><FaCompactDisc size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button><HiAdjustments size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button onClick={handleToggleModal}><IoIosAddCircle size={30} color={mode == "dark"? "#fff":"000"}/></button>
-            {!modalState && <Modal />}
+            {!modalState && <Modal MusicForm={MusicForm}/>}
         </LeftSidebarContainer>
         </>
     )
