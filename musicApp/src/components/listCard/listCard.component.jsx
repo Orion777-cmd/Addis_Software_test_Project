@@ -1,4 +1,4 @@
-import {useEffect} from "react"
+
 import styled from "@emotion/styled"
 import { IoPlayCircleOutline } from "react-icons/io5";
 import { FaRegCirclePause } from "react-icons/fa6";
@@ -8,9 +8,7 @@ import MusicPopup from "../musicPopup/musicPopup.component"
 
 import { selectMusicHidden } from "../../redux/music/music.selector"
 import { toggleMusic } from "../../redux/music/music.reducer";
-import { selectMusicData } from "../../redux/music/music.selector";
 
-import { getMusicAction } from "../../redux/music/music.reducer";
 
 
 const ListCardContainer = styled.div`
@@ -68,18 +66,16 @@ const ListCardContainer = styled.div`
 `;
 
 
-const ListCard = ({idx}) => {
+const ListCard = ({idx, data, isLoading}) => {
     const {mode} = useSelector(state=> state.theme)
     console.log("listcard index: ", idx)
-    const id = "65bd51e1792dbc024bf9255b";
+ 
+   
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getMusicAction(id))
-    }, [id, dispatch])
+  
+    console.log("list card data: ", data, isLoading)
+    
 
-    const {data, isLoading, error} = useSelector(selectMusicData);
-
-    console.log("data: ", data, isLoading)
     const musicHidden = useSelector(selectMusicHidden)
     
     const handleMusicPopupToggle = () => {
@@ -94,6 +90,7 @@ const ListCard = ({idx}) => {
             {isLoading? <div>isLoading....</div>: 
             <div>
                 <img src={data.coverArtUrl? data.coverArtUrl: "https://picsum.photos/200"} alt="cover" />
+
                 <div className="info">
                     <h3>{data.title}</h3>
                     <p>{data.artist}</p>

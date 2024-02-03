@@ -19,6 +19,7 @@ export class MusicController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+    console.log(id);
     return this.musicService.findOne(id);
   }
 

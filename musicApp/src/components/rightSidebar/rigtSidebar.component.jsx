@@ -1,4 +1,5 @@
-import react from "react"
+import React, { useEffect, useState } from "react";
+
 import styled from "@emotion/styled"
 // import { Link } from "react-router-dom"
 import Tag from "../tag/tag.component"
@@ -15,6 +16,9 @@ import {useSelector, useDispatch} from "react-redux"
 
 import { selectMusicHidden } from "../../redux/music/music.selector"
 import { toggleMusic } from "../../redux/music/music.reducer"
+import { selectMusicData } from "../../redux/music/music.selector";
+
+import { getMusicAction } from "../../redux/music/music.reducer";
 
 const RightSideBarContainer = styled.div`
     display: flex;
@@ -151,7 +155,16 @@ const AllSongContainer = styled.div`
 
 const RightSidebar = () => {
     const {mode} = useSelector(state => state.theme)
-    
+    const id = "65bd5254792dbc024bf9255d";
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getMusicAction(id));
+    }, []);
+
+
+    const {data, isLoading, error} = useSelector(selectMusicData);
+
     
     return (
         <RightSideBarContainer>
@@ -190,7 +203,7 @@ const RightSidebar = () => {
 
             <AllSongContainer>
                 <h3>Available Songs (<span>3</span>)</h3>
-                { [...Array(5)].map((_, i) => <ListCard idx={i}/>)}
+                { [...Array(5)].map((_, i) => <ListCard key={i} idx={i} data={data} isLoading={isLoading}/>)}
                 
             </AllSongContainer>
         </RightSideBarContainer>
