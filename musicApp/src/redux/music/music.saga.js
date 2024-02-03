@@ -10,6 +10,12 @@ import { getAllMusicErrorAction,
     putMusicSuccessAction,
     deleteMusicErrorAction,
     deleteMusicSuccessAction,
+    getMusicByTitleSuccessAction,
+    getMusicByTitleErrorAction,
+    getMusicByArtistSuccessAction,
+    getMusicByArtistErrorAction,
+    getMusicByGenreSuccessAction,
+    getMusicByGenreErrorAction,
     } from "./music.reducer"
 import { GET_MUSIC_BY_ID, GET_ALL_MUSIC, POST_MUSIC, PUT_MUSIC, DELETE_MUSIC } from "./music.types";
 
@@ -39,6 +45,46 @@ function* getAllMusicSaga(){
         yield put(getAllMusicSuccessAction(musics));
     }catch(error){
         yield put(getAllMusicErrorAction(error.message));
+    }
+}
+
+function* getMusicByTitleSaga({payload: title}) {
+    try{
+        const response = yield fetch(`http://localhost:3000/music/title/${title}`);
+        if (!response.ok){
+            throw new Error('Failed to fetch music by title');
+        }
+        const serachedMusics = yield response.json();
+        yield put(getMusicByTitleSuccessAction(searchedMusics));
+    }catch(error){
+        yield put(getMusicByTitleErrorAction(error.message));
+    }
+}
+
+function* getMusicByArtistSaga({payload: artist}) {
+    try{
+        const response = yield fetch(`http://localhost:3000/music/artist/${artist}`);
+        if (!response.ok){
+            throw new Error('Failed to fetch musics by artist');
+        }
+
+        const searchedMusics = yield response.json();
+        yield put(getMusicByArtistSuccessAction(searchedMusics));
+    }catch(error){
+        yield put(getMusicByArtistErrorAction(error.message));
+    }
+}
+
+function* getMusicByGenreSaga({payload: genre}) {
+    try{
+        const response = yield fetch(`http://localhost/3000/music/genre/${genre}`);
+        if (!response.ok){
+            throw new Error('Failed to fetch music by Genre');
+        }
+        const filteredMusics = yield response.json();
+        yield put(getMusicByGenreSuccessAction(filteredMusics));
+    }catch(error){
+        yield put(getMusicByGenreErrorAction(error.message));
     }
 }
 
@@ -107,7 +153,10 @@ export function* watchGetMusic(){
         takeLatest(GET_ALL_MUSIC, getAllMusicSaga),
         takeLatest(POST_MUSIC, createMusicSaga),
         takeLatest(PUT_MUSIC, updateMusicSaga),
-        takeLatest(DELETE_MUSIC, deleteMusicSaga)
+        takeLatest(DELETE_MUSIC, deleteMusicSaga),
+        takeLatest(GET_MUSIC_BY_TITLE, getMusicByTitleSaga),
+        takeLatest(GET_MUSIC_BY_ARTIST, getMusicByArtistSaga),
+        takeLatest(GET_MUSIC_BY_GENRE, getMusicByGenreSaga),
     ])
     
 }

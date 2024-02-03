@@ -101,6 +101,46 @@ const profileSlice = createSlice({
             state.music.isLoading = false;
             state.music.errors = error;
         },
+        getMusicByTitleAction: (state, {payload: title}) => {
+            state.musics.isLoading = true;
+            state.musics.errors = null;
+        },
+        getMusicByTitleSuccessAction: (state, {payload: musics}) => {
+            state.musics.data = musics;
+            state.musics.isLoading = false;
+        },
+        getMusicByTitleErrorAction: (state, {payload: error}) => {
+            state.musics.errors = error;
+            state.musics.isLoading = false;
+        },
+        getMusicByArtistAction: (state, {payload:artist}) =>{
+            state.musics.isLoading = true;
+            state.musics.errors = null;
+
+        },
+        getMusicByArtistSuccessAction: (state, {payload: musics}) => {
+            state.musics.data = musics;
+            state.musics.isLoading = false;
+
+        },
+        getMusicByArtistErrorAction: (state, {payload: error}) => {
+            state.musics.errors = error;
+            state.musics.isLoading = false;
+        },
+        getMusicByGenreACtion: (state, {payload: genre}) =>{
+            state.musics.isLoading = true;
+            state.musics.errors = null;
+        },
+        getMusicByGenreSuccessAction: (state, {payload: musics}) => {
+            state.musics.data = musics;
+            state.musics.isLoading = false;
+        },
+        getMusicByGenreErrorAction: (state, {payload: error}) => {
+            state.musics.errors = error;
+            state.musics.isLoading = false;
+        }
+
+
     }
 
 })
@@ -121,7 +161,16 @@ export const {toggleMusic,
     putMusicSuccessAction,
     deleteMusicAction,
     deleteMusicErrorAction,
-    deleteMusicSuccessAction
+    deleteMusicSuccessAction,
+    getMusicByTitleAction,
+    getMusicByTitleErrorAction,
+    getMusicByTitleSuccessAction,
+    getMusicByArtistAction,
+    getMusicByArtistErrorAction,
+    getMusicByArtistSuccessAction,
+    getMusicByGenreACtion,
+    getMusicByGenreErrorAction,
+    getMusicByGenreSuccessAction,
 
     } = profileSlice.actions
 

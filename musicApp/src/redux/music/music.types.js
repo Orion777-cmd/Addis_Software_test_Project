@@ -24,3 +24,6 @@ export const GET_ALL_MUSIC = `${MUSIC}/getAllMusicAction`;
 export const POST_MUSIC = `${MUSIC}/postMusicAction`;
 export const PUT_MUSIC = `${MUSIC}/putMusicAction`;
 export const DELETE_MUSIC = `${MUSIC}/deleteMusicAction`;
+export const GET_MUSIC_BY_TITLE = `${MUSIC}/getMusicByTitleAction`;
+export const GET_MUSIC_BY_ARTIST = `${MUSIC}/getMusicByArtistAction`;
+export const GET_MUSIC_BY_GENRE = `${MUSIC}/getMusicByGenreAction`;
