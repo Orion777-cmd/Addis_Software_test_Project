@@ -12,7 +12,7 @@ const FooterContainer = styled.div`
 const Footer = () => {
   return (
     <FooterContainer>
-      <p>musicApp © 2023</p>
+      <p>musicApp © 2024</p>
     </FooterContainer>
     );
 };

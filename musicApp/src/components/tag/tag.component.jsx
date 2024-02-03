@@ -20,8 +20,9 @@ const TagContainer = styled.div`
         font-size: 10px;
     }
     :hover {
-        color: ${({ mode }) => (mode === "dark" ? "#fff" : "#000")};
-        background-color: ${({ mode }) => (mode === "dark" ? "#000" : "#fff")};
+        // color: ${({ mode }) => (mode === "dark" ? "#fff" : "#000")};
+        // background-color: ${({ mode }) => (mode === "dark" ? "#000" : "#fff")};
+        opacity: 0.5;
     }
     
 `;
