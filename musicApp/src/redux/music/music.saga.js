@@ -23,7 +23,7 @@ import { GET_MUSIC_BY_ID, GET_ALL_MUSIC, POST_MUSIC, PUT_MUSIC, DELETE_MUSIC, GE
 
 function* getMusicSaga({ payload: id }) {
     try {
-        const response = yield fetch(`http://localhost:3000/music/${id}`);
+        const response = yield fetch(`https://music-backeend.vercel.app/music/${id}`);
         if (!response.ok) {
             throw new Error('Failed to fetch music');
         }
@@ -37,7 +37,7 @@ function* getMusicSaga({ payload: id }) {
 function* getAllMusicSaga(){
     try{
         console.log("get all music saga called")
-        const response = yield fetch('http://localhost:3000/music');
+        const response = yield fetch('https://music-backeend.vercel.app/music');
         if (!response.ok){
             throw new Error('Failed to fetch the musics');
         }
@@ -51,7 +51,7 @@ function* getAllMusicSaga(){
 
 function* getMusicByTitleSaga({payload: title}) {
     try{
-        const response = yield fetch(`http://localhost:3000/music/title/${title}`);
+        const response = yield fetch(`https://music-backeend.vercel.app/music/title/${title}`);
         if (!response.ok){
             throw new Error('Failed to fetch music by title');
         }
@@ -64,7 +64,7 @@ function* getMusicByTitleSaga({payload: title}) {
 
 function* getMusicByArtistSaga({payload: artist}) {
     try{
-        const response = yield fetch(`http://localhost:3000/music/artist/${artist}`);
+        const response = yield fetch(`https://music-backeend.vercel.app/music/artist/${artist}`);
         if (!response.ok){
             throw new Error('Failed to fetch musics by artist');
         }
@@ -91,7 +91,7 @@ function* getMusicByGenreSaga({payload: genre}) {
 
 function* createMusicSaga({payload: music}){
     try{
-        const response = yield fetch('http://localhost:3000/music', {
+        const response = yield fetch('https://music-backeend.vercel.app/music', {
             method:"POST",
             headers: {
                 'Content-Type': "application/json"
@@ -115,7 +115,7 @@ function* createMusicSaga({payload: music}){
 
 function* updateMusicSaga({payload: music}){
     try{
-        const response = yield fetch(`http://localhost:3000/music/${music._id}`, {
+        const response = yield fetch(`https://music-backeend.vercel.app/music/${music._id}`, {
             method:'PATCH',
             headers: {
                 'Content-Type': "application/json",
@@ -136,7 +136,7 @@ function* updateMusicSaga({payload: music}){
 
 function* deleteMusicSaga({payload:id}){
     try{
-        const response = yield fetch(`http://localhost:3000/music/${id}`, {
+        const response = yield fetch(`https://music-backeend.vercel.app/music/${id}`, {
             method: 'DELETE',
         })
         if (!response.ok){
