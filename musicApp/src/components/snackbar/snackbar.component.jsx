@@ -6,7 +6,7 @@ import {useSelector} from "react-redux"
 
 const SnackbarContainer = styled.div`
     position: absolute;
-    top: 50px;
+    bottom: 20%;
     left:50px;
     width: 200px;
     height: 50px;
@@ -16,7 +16,7 @@ const SnackbarContainer = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 1.5s;
     padding: 1em;
     
     p {
@@ -27,25 +27,18 @@ const SnackbarContainer = styled.div`
 
     @keyframes fadein {
         from {
-            bottom: 0;
+            bottom: 0px;
             opacity: 0;
         }
 
         to {
-            bottom: 30px;
+            bottom: 20%;
             opacity: 1;
         }
+       
     }
 
-    @keyframes fadeout {
-        from {
-            bottom: 30px;
-            opacity: 1;
-        }
-        to {
-            bottom: 0;
-            opacity: 0;
-        }
+   
     }
 
 
