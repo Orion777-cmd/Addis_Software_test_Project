@@ -36,7 +36,7 @@ function* getMusicSaga({ payload: id }) {
 
 function* getAllMusicSaga(){
     try{
-        console.log("get all music saga called")
+       
         const response = yield fetch('https://music-backeend.vercel.app/music');
         if (!response.ok){
             throw new Error('Failed to fetch the musics');
@@ -55,7 +55,7 @@ function* getMusicByTitleSaga({payload: title}) {
         if (!response.ok){
             throw new Error('Failed to fetch music by title');
         }
-        const serachedMusics = yield response.json();
+        const searchedMusics = yield response.json();
         yield put(getMusicByTitleSuccessAction(searchedMusics));
     }catch(error){
         yield put(getMusicByTitleErrorAction(error.message));
