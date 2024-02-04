@@ -8,12 +8,14 @@ import { FaCompactDisc } from "react-icons/fa";
 import { HiAdjustments } from "react-icons/hi";
 import { IoIosAddCircle } from "react-icons/io";
 
-
+import Snackbar from "../snackbar/snackbar.component";
 import MusicForm from "../MusicForm/MusicForm.component";
 import {useSelector, useDispatch} from "react-redux"
 import Modal from "../modal/modal.component";
 import { toggleAddModalState } from "../../redux/modal/modal.reducer";
 import { selectAddModalState } from "../../redux/modal/modal.selector";
+import { toggleSnackbar } from "../../redux/snackbar/snackbar.reducer";
+import { selectSnackbarState } from "../../redux/snackbar/snackbar.selector";
 
 const LeftSidebarContainer = styled.div`
     width: 5%;
@@ -30,6 +32,7 @@ const LeftSidebarContainer = styled.div`
         font-size: 1.5em;
         color: #2e2b2b;
         transition: all 0.2s ease-in-out;
+        position: relative;
         &:hover {
             scale: 1.1;
         }
@@ -45,21 +48,26 @@ const LeftSidebar = () => {
     const handleToggleModal = () => {
         dispatch(toggleAddModalState())
     }
-    console.log("modalState", modalState)
 
+    const snackbarState = useSelector(selectSnackbarState);
+    console.log("snackbarState: ", snackbarState)
+    const handleToggleSnackbar = () => {
+        dispatch(toggleSnackbar());
+    }
     
     return (
         <>
         <LeftSidebarContainer >
             <button><IoMdHome size={30} color={mode == "dark"? "#fff":"000"}/></button>
-            <button><MdFavoriteBorder size={30} color={mode == "dark"? "#fff":"000"}/></button>
-            {/* <button><MdFavorite size={30}/></button> */}
-            <button><PiPlaylistFill size={30} color={mode == "dark"? "#fff":"000"}/></button>
-            <button><FaCompactDisc size={30} color={mode == "dark"? "#fff":"000"}/></button>
-            <button><HiAdjustments size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button onClick={handleToggleSnackbar}><MdFavoriteBorder size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button onClick={handleToggleSnackbar}><PiPlaylistFill size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button onClick={handleToggleSnackbar}><FaCompactDisc size={30} color={mode == "dark"? "#fff":"000"}/></button>
+            <button onClick={handleToggleSnackbar}><HiAdjustments size={30} color={mode == "dark"? "#fff":"000"}/></button>
             <button onClick={handleToggleModal}><IoIosAddCircle size={30} color={mode == "dark"? "#fff":"000"}/></button>
             {!modalState && <Modal MusicForm={MusicForm}/>}
+            {!snackbarState && <Snackbar/>}
         </LeftSidebarContainer>
+        
         </>
     )
 }
