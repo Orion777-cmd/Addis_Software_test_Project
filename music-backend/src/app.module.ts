@@ -11,7 +11,7 @@ import {MongooseModule} from '@nestjs/mongoose';
 @Module({
   imports: [MusicModule,
      UserModule,
-     MongooseModule.forRoot('mongodb://localhost:27017/music'),
+     MongooseModule.forRoot('mongodb+srv://abiy:QS$F9bJLp_P5pXc@cluster0.udmwhv0.mongodb.net/music?retryWrites=true&w=majority'),
     
     ],
   controllers: [AppController],
