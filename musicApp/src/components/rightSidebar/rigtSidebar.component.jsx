@@ -5,7 +5,7 @@ import styled from "@emotion/styled"
 import Tag from "../tag/tag.component"
 import Card from "../card/card.component"
 import ListCard from "../listCard/listCard.component"
-// import imageUrl from "../../assets/thinkingOutLoud.png";
+import Slider from "react-slick"
 
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
@@ -155,6 +155,14 @@ const AllSongContainer = styled.div`
 
 
 const RightSidebar = () => {
+
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+    }
     const {mode} = useSelector(state => state.theme)
    
     const dispatch = useDispatch();
@@ -195,10 +203,15 @@ const RightSidebar = () => {
             </FilterContainer>
             <FilterSongContainer>
                 <LeftButton><FaArrowLeft color={mode == "dark"? "#fff":"000"}/></LeftButton>
+                
                 <CardContainer>
                 {  isLoading ? <div>Loading...</div>:
-                    data.length > 0? data.map((data, i) => <Card key={i} idx={i} data={data} isLoading={isLoading}/>):
-                    [...Array(5)].map((_, i) => <Card key={i} idx={i} data={null} isLoading={isLoading}/>)
+                    
+                        
+                            data.length > 0? data.map((data, i) => <Card key={i} idx={i} data={data} isLoading={isLoading}/>):
+                            [...Array(5)].map((_, i) => <Card key={i} idx={i} data={null} isLoading={isLoading}/>)
+                        
+                    
                 }
                 </CardContainer>
                 <RightButton><FaArrowRight color={mode == "dark"? "#fff":"000"}/></RightButton>
