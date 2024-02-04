@@ -53,7 +53,7 @@ const MusicForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data is : ", formData)
+   
     dispatch(postMusicAction(formData));
     setFormData({
       title: '',

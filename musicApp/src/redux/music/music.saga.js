@@ -78,7 +78,7 @@ function* getMusicByArtistSaga({payload: artist}) {
 
 function* getMusicByGenreSaga({payload: genre}) {
     try{
-        const response = yield fetch(`http://localhost/3000/music/genre/${genre}`);
+        const response = yield fetch(`https://music-backeend.vercel.app/music/genre/${genre}`);
         if (!response.ok){
             throw new Error('Failed to fetch music by Genre');
         }
@@ -91,7 +91,7 @@ function* getMusicByGenreSaga({payload: genre}) {
 
 function* createMusicSaga({payload: music}){
     try{
-        const response = yield fetch('https://music-backeend.vercel.app/music', {
+        const response = yield fetch("https://music-backeend.vercel.app/music", {
             method:"POST",
             headers: {
                 'Content-Type': "application/json"
